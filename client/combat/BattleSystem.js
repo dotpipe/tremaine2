@@ -223,41 +223,63 @@ export class BattleSystem {
     this.rules.resolveQueue(this);
   }
 
+  log(message) {
+
+    this.log(message);
+
+    this.onLog?.(message, this);
+
+  }
+
+  emit(event, data = {}) {
+
+    this.onEvent?.({
+
+      event,
+
+      battle: this,
+
+      ...data
+
+    });
+
+  }
+
   canPlayCard(card) {
-      if (!this.active) return false;
-      if (this.phaseBudget <= 0) return false;
+    if (!this.active) return false;
+    if (this.phaseBudget <= 0) return false;
 
-      if (
-          card.requirementValues?.length &&
-          !card.requirementValues.includes(this.phaseRoll)
-      ) {
-          return false;
-      }
+    if (
+      card.requirementValues?.length &&
+      !card.requirementValues.includes(this.phaseRoll)
+    ) {
+      return false;
+    }
 
-      if (
-          card.type === "Spell" &&
-          this.rules.phi[this.owner] < card.cost
-      ) {
-          return false;
-      }
+    if (
+      card.type === "Spell" &&
+      this.rules.phi[this.owner] < card.cost
+    ) {
+      return false;
+    }
 
-      switch (this.phase) {
+    switch (this.phase) {
 
-          case "attack":
-              return (
-                  card.type === "Attack" ||
-                  card.type === "Spell"
-              );
+      case "attack":
+        return (
+          card.type === "Attack" ||
+          card.type === "Spell"
+        );
 
-          case "defense":
-              return (
-                  card.type === "Defense" ||
-                  card.type === "Spell"
-              );
+      case "defense":
+        return (
+          card.type === "Defense" ||
+          card.type === "Spell"
+        );
 
-          default:
-              return false;
-      }
+      default:
+        return false;
+    }
   }
 
   getSelectedIndex(side) {
@@ -291,6 +313,17 @@ export class BattleSystem {
     if (!this.rules.playCard(card, this.owner, targetSide, targetIndex, this)) return false;
     this.phaseBudget = this.rules.phaseBudget;
     this.deck.play(handIndex);
+
+    this.emit("cardPlayed", {
+
+      owner: this.owner,
+
+      card,
+
+      handIndex
+
+    });
+
     this.deck.drawTo(6);
     this.rules.resolveQueue(this);
 
@@ -371,7 +404,7 @@ export class BattleSystem {
     if (!unit) return;
 
     if (unit.status?.nullify?.duration > 0) {
-      this.logs.push(`${unit.name} nullifies the incoming effect.`);
+      this.log(`${unit.name} nullifies the incoming effect.`);
       return;
     }
 
@@ -394,6 +427,16 @@ export class BattleSystem {
 
     if (dmg > 0) unit.hp -= dmg;
 
+    this.emit("damage", {
+
+      side,
+
+      unit,
+
+      amount: dmg
+
+    });
+
     if (st.reflect && meta.sourceSide && dmg > 0) {
       const reflected = Math.max(1, Math.floor(dmg * (st.reflect.value / 100)));
       const srcIndex = this.getActiveIndex(meta.sourceSide);
@@ -413,11 +456,18 @@ export class BattleSystem {
     }
 
     if (dmg > 0) {
-      this.logs.push(`${unit.name} takes ${dmg} damage.`);
+      this.log(`${unit.name} takes ${dmg} damage.`);
     }
 
     if (unit.hp <= 0) {
-      this.logs.push(`${unit.name} is destroyed.`);
+      this.log(`${unit.name} is destroyed.`);
+      this.emit("unitDestroyed", {
+
+        side,
+
+        unit
+
+      });
     }
 
     this.refreshBattleModal();
@@ -427,7 +477,7 @@ export class BattleSystem {
     const unit = this.getUnit(side, index);
     if (!unit) return;
     unit.hp += amount;
-    this.logs.push(`${unit.name} heals ${amount}.`);
+    this.log(`${unit.name} heals ${amount}.`);
     this.refreshBattleModal();
   }
 
@@ -435,7 +485,7 @@ export class BattleSystem {
     const unit = this.getUnit(side, index);
     if (!unit) return;
     this.status.apply(side, unit.id, status, value, duration);
-    this.logs.push(`${unit.name} gains ${status}.`);
+    this.log(`${unit.name} gains ${status}.`);
     this.refreshBattleModal();
   }
 
@@ -492,103 +542,117 @@ export class BattleSystem {
     return (side === "player" ? this.playerSquad : this.enemySquad).filter(u => u && u.hp > 0);
   }
 
-checkDeaths() {
+  checkDeaths() {
 
-this.playerSquad =
-(
-this.playerSquad
-||
-[]
-)
-.filter(
-u =>
-u &&
-u.hp >
-0
-);
+    this.playerSquad =
+      (
+        this.playerSquad
+        ||
+        []
+      )
+        .filter(
+          u =>
+            u &&
+            u.hp >
+            0
+        );
 
-this.enemySquad =
-(
-this.enemySquad
-||
-[]
-)
-.filter(
-u =>
-u &&
-u.hp >
-0
-);
+    this.enemySquad =
+      (
+        this.enemySquad
+        ||
+        []
+      )
+        .filter(
+          u =>
+            u &&
+            u.hp >
+            0
+        );
 
-// sync back to world
+    // sync back to world
 
-if(
-this.worldSquad
-){
+    if (
+      this.worldSquad
+    ) {
 
-const alive =
-this.enemySquad;
+      const alive =
+        this.enemySquad;
 
-this.worldSquad.leader =
-alive[0]
-||
-null;
+      this.worldSquad.leader =
+        alive[0]
+        ||
+        null;
 
-this.worldSquad.members =
-alive
-.slice(
-1
-);
+      this.worldSquad.members =
+        alive
+          .slice(
+            1
+          );
 
-}
+    }
 
-if(
-this.playerSquad
-.length
-===
-0
-){
+    if (
+      this.playerSquad
+        .length
+      ===
+      0
+    ) {
 
-this.finishBattle(
-"lose"
-);
+      this.emit("battleLost", {
 
-return true;
+        room: this.node
 
-}
+      });
 
-if(
-this.enemySquad
-.length
-===
-0
-){
+      this.finishBattle(
+        "lose"
+      );
 
-// remove world squad NOW
+      return true;
 
-if(
-this.worldSquad
-){
+    }
 
-this.worldSquad.dead =
-true;
+    if (
+      this.enemySquad
+        .length
+      ===
+      0
+    ) {
 
-this.worldSquad.inBattle =
-false;
+      // remove world squad NOW
 
-}
+      if (
+        this.worldSquad
+      ) {
 
-this.finishBattle(
-"victory"
-);
+        this.worldSquad.dead =
+          true;
 
-return true;
+        this.worldSquad.inBattle =
+          false;
 
-}
+      }
 
-return false;
+      this.emit("battleWon", {
 
-}
+        room: this.node,
+
+        squad: this.worldSquad
+
+      });
+
+      this.finishBattle(
+        "victory"
+      );
+
+      return true;
+
+    }
+
+    return false;
+
+  }
 
   discardHand() {
     if (!this.active || this.owner !== "player") return false;
@@ -640,7 +704,7 @@ return false;
     this.damageUnit("enemy", this.selectedEnemy, amount, { sourceSide: "player" });
     this.checkDeaths();
 
-this.refreshBattleModal();
+    this.refreshBattleModal();
     this.syncUI(`${attacker.name} strikes ${target.name}.`);
     return true;
   }
@@ -654,7 +718,7 @@ this.refreshBattleModal();
 
     if (!hit) {
       const graze = isPlayer ? Math.floor(level / 3) : 0;
-      this.logs.push(`${label} misses${graze > 0 ? ` but grazes for ${graze}` : ""}.`);
+      this.log(`${label} misses${graze > 0 ? ` but grazes for ${graze}` : ""}.`);
       return graze;
     }
 
@@ -711,7 +775,7 @@ this.refreshBattleModal();
   }
 
   syncUI(msg) {
-    if (msg) this.logs.push(msg);
+    if (msg) this.log(msg);
     this.refreshBattleModal();
   }
 

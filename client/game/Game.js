@@ -32,6 +32,7 @@ import {
 
 export class Game {
   constructor(canvas) {
+
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
 
@@ -41,98 +42,139 @@ export class Game {
     this.mode = "explore";
     this.moveCooldown = 0;
     this.moveInterval = 220;
+    this.world = {
+
+      rooms: {},
+
+      raids: {},
+
+      drops: {},
+
+      monsters: {},
+
+      chronicle: []
+
+    };
     this.playersOnline = 1;
     this.onlineClientId = Date.now().toString();
     this.clientId = this.loadClientId();
     this.profile = this.loadProfile();
 
+    // ============================
     // WORLD
-    this.campaign = new CampaignMap();
-    this.currentGrid = this.campaign.currentNode().grid;
-    this.roomManager = new RoomManager();
+    // ============================
 
-    // PLAYER STATE
+    this.campaign = new CampaignMap();
+
+    this.refreshCurrentGrid();
+
+    // future persistent world object
+    // this.worldState = new WorldState();
+
+    // ============================
+    // PLAYER
+    // ============================
+
     this.state = {
+
       roomX: 25,
       roomY: 25,
       depth: 1,
+
       player: {
+
         x: 2,
         y: 2,
+
         hp: 20,
+
         xp: this.profile.xp,
         level: this.profile.level,
+
         squad: this.createPlayerSquad()
+
       }
+
     };
 
+    // ============================
     // ENEMIES
+    // ============================
+
     this.enemySquads = [];
     this.enemyTick = 0;
 
-    // RAID LEDGER
+    // ============================
+    // RAID
+    // ============================
+
     this.raidCompleted = 0;
     this.raidsCompleted = 0;
-    this.currentRaid = this.getCurrentRaid();
+    this.refreshCurrentGrid();
 
-    this.hold =
-      new WeaponsHold();
-
-    this.flux =
-      new FluxReactor();
-
-    this.power =
-      new PowerReactor();
-
-    this.arsenal =
-      new Arsenal();
-    this.foundry =
-      new Foundry(
-        this
-      );
-
-    this.store =
-      new Store(
-        this.cardLibrary
-      );
-
-    this.sideboard =
-      new Sideboard();
-
-    this.foundry =
-      new Foundry();
-
-    this.storeModal =
-      new StoreModal(
-        this
-      );
-    this.deckCreator = new DeckCreator(this);
-    // SYSTEMS
-    this.iso = new IsoRenderer(canvas);
-    this.modal = new BattleModal(this);
-    this.handTray = new HandTray(this);
-    this.hud = new HUD(this);
-    this.bottomBar = new BottomBar(this);
-    this.battle = new BattleSystem(this);
+    // ============================
+    // CARD DATA
+    // ============================
 
     this.cardLibrary = new CardLibrary([]);
 
+    this.sideboard = new Sideboard();
+
+    // ============================
+    // GAME SYSTEMS
+    // ============================
+
+    this.hold = new WeaponsHold();
+
+    this.flux = new FluxReactor();
+
+    this.power = new PowerReactor();
+
+    this.arsenal = new Arsenal();
+
+    this.foundry = new Foundry(this);
+
+    this.store = new Store(this.cardLibrary);
+
+    // ============================
+    // UI
+    // ============================
+
+    this.storeModal = new StoreModal(this);
+
+    this.deckCreator = new DeckCreator(this);
+
+    this.iso = new IsoRenderer(canvas);
+
+    this.modal = new BattleModal(this);
+
+    this.handTray = new HandTray(this);
+
+    this.hud = new HUD(this);
+
+    this.bottomBar = new BottomBar(this);
+
+    // ============================
+    // COMBAT
+    // ============================
+
+    this.battle = new BattleSystem(this);
+
+    // ============================
+    // TIMING
+    // ============================
+
     this.lastFrame = performance.now();
 
-    this.flux =
-      new FluxReactor();
-
-    this.power =
-      new PowerReactor();
-
-    this.arsenal =
-      new Arsenal();
-
-    this.foundry =
-      new Foundry();
     this._resize = this._resize.bind(this);
-    window.addEventListener("resize", this._resize);
+
+    window.addEventListener(
+      "resize",
+      this._resize
+    );
+
     this._resize();
+
   }
 
   buildFoundryCard() {
@@ -444,6 +486,17 @@ export class Game {
     } catch { }
   }
 
+  getRoomSeed(depth, roomX, roomY) {
+
+    // Supports negative coordinates and virtually unlimited depths.
+    return (
+      (depth * 73856093) ^
+      (roomX * 19349663) ^
+      (roomY * 83492791)
+    ) >>> 0;
+
+  }
+
   getCurrentRaid() {
     const raid =
       this.raidsCompleted + 1;
@@ -664,8 +717,7 @@ export class Game {
       if (rx || ry) {
         p.roomX = (p.roomX || 25) + rx;
         p.roomY = (p.roomY || 25) + ry;
-        const seed = (this.campaign.currentNode().depth * 100000) + (p.roomX * 1000) + p.roomY;
-        this.currentGrid = this.roomManager.get(this.campaign.currentNode().depth, p.roomX, p.roomY, () => this.campaign.generateGrid(seed));
+        this.refreshCurrentGrid();
         p.x = Math.floor(this.currentGrid[0].length / 2);
         p.y = Math.floor(this.currentGrid.length / 2);
         return;
@@ -682,29 +734,105 @@ export class Game {
     if (!tile) return;
 
     if (tile.cave === "down" || tile.type === 1) {
-      this.changeDepth(1);
+      this.refreshCurrentGrid();
     } else if (tile.cave === "up" || tile.type === 0) {
-      this.changeDepth(-1);
+      this.refreshCurrentGrid();
     }
   }
 
   changeDepth(direction) {
-    const previousIndex = this.campaign.currentIndex;
-    if (direction > 0) this.campaign.nextNode();
-    else this.campaign.previousNode();
-    if (this.campaign.currentIndex === previousIndex) return;
 
-    this.currentGrid = this.campaign.currentNode().grid;
-    this.roomManager = new RoomManager();
+    const previousIndex = this.campaign.currentIndex;
+
+    if (direction > 0)
+      this.campaign.nextNode();
+    else
+      this.campaign.previousNode();
+
+    if (this.campaign.currentIndex === previousIndex)
+      return;
+
     this.state.depth = this.campaign.currentIndex + 1;
+
     this.state.roomX = 25;
     this.state.roomY = 25;
-    const entryType = direction > 0 ? "up" : "down";
-    const entry = this.findTile(tile => tile.cave === entryType) || this.findTileByType?.(direction > 0 ? 0 : 1) || { x: 2, y: 2 };
+
+this.refreshCurrentGrid();
+
+    const entryType =
+      direction > 0
+        ? "up"
+        : "down";
+
+    const entry =
+
+      this.findTile(
+        tile => tile.cave === entryType
+      )
+
+      ||
+
+      this.findTileByType(
+        direction > 0
+          ? 0
+          : 1
+      )
+
+      ||
+
+      {
+        x: 2,
+        y: 2
+      };
+
     this.state.player.x = entry.x;
     this.state.player.y = entry.y;
-    if (this.currentGrid[entry.y]?.[entry.x]) this.currentGrid[entry.y][entry.x].wall = false;
+
+    if (this.currentGrid[entry.y]?.[entry.x])
+      this.currentGrid[entry.y][entry.x].wall = false;
+
     this.spawnWorldEnemies();
+
+  }
+
+  getCurrentRoom() {
+
+    const depth = this.state.depth;
+    const roomX = this.state.roomX;
+    const roomY = this.state.roomY;
+
+    return this.roomManager.get(
+
+      depth,
+
+      roomX,
+
+      roomY,
+
+      () => {
+
+this.refreshCurrentGrid();
+
+      }
+
+    );
+
+  }
+getRoomKey(depth = this.state.depth,
+           roomX = this.state.roomX,
+           roomY = this.state.roomY) {
+
+    return this.roomManager.key(
+        depth,
+        roomX,
+        roomY
+    );
+
+}
+  refreshCurrentGrid() {
+
+    this.currentGrid = this.getCurrentRoom();
+
   }
 
   findTile(predicate) {
@@ -724,7 +852,7 @@ export class Game {
    * ENEMIES
    * ----------------------------- */
   spawnWorldEnemies() {
-    const g = this.currentGrid;
+    const g = this.getCurrentRoom();
     this.enemySquads = [];
 
     const findWalkable = () => {
@@ -809,330 +937,376 @@ export class Game {
         continue;
       }
 
-    if (squad.inBattle) {
-      continue;
-    }
+      if (squad.inBattle) {
+        continue;
+      }
 
-    if (this.enemyTick % 30 !== 0) {
-      continue;
-    }
+      if (this.enemyTick % 30 !== 0) {
+        continue;
+      }
 
-    for (const e of [squad.leader, ...squad.members]) {
-      const dirs = [
-        { x: 1, y: 0 },
-        { x: -1, y: 0 },
-        { x: 0, y: 1 },
-        { x: 0, y: -1 }
-      ];
+      for (const e of [squad.leader, ...squad.members]) {
+        const dirs = [
+          { x: 1, y: 0 },
+          { x: -1, y: 0 },
+          { x: 0, y: 1 },
+          { x: 0, y: -1 }
+        ];
 
-      const move = dirs[Math.floor(Math.random() * dirs.length)];
-      const nx = e.x + move.x;
-      const ny = e.y + move.y;
+        const move = dirs[Math.floor(Math.random() * dirs.length)];
+        const nx = e.x + move.x;
+        const ny = e.y + move.y;
 
-      if (this.isWalkable(nx, ny)) {
-        e.x = nx;
-        e.y = ny;
+        if (this.isWalkable(nx, ny)) {
+          e.x = nx;
+          e.y = ny;
+        }
       }
     }
   }
-}
 
-checkEnemyCollisions() {
-  const p = this.state.player;
+  checkEnemyCollisions() {
+    const p = this.state.player;
 
-  for (
-    const squad
-    of
-    this.enemySquads
-      .filter(
-        s =>
-          s &&
-          !s.dead
-      )
-  ) { if (squad.cooldown > 0 || squad.retreating || squad.inBattle) continue;
+    for (
+      const squad
+      of
+      this.enemySquads
+        .filter(
+          s =>
+            s &&
+            !s.dead
+        )
+    ) {
+      if (squad.cooldown > 0 || squad.retreating || squad.inBattle) continue;
 
-  const units = [squad.leader, ...squad.members];
-  if (units.some(unit => unit.x === p.x && unit.y === p.y)) {
-    this.startBattleWithSquad(squad);
-    break;
-  }
-}
-}
-
-/* -----------------------------
- * BATTLE
- * ----------------------------- */
-startBattleWithSquad(squad) {
-  if (this.mode === "combat") return;
-
-  this.mode = "combat";
-
-  squad.inBattle = true;
-  squad.retreating = false;
-  squad.cooldown = 0;
-
-  const enemies = [squad.leader, ...squad.members].map(u => ({
-    id: u.id,
-    name: u.name || "Enemy",
-    hp: u.hp,
-    atk: u.atk || 2,
-    def: u.def || 1,
-    status: {}
-  }));
-
-  this.battle.startEncounter({ enemies, worldSquad: squad });
-
-  this.modal.render(this.battle.snapshot());
-}
-
-/* -----------------------------
- * LOOP
- * ----------------------------- */
-start() {
-  requestAnimationFrame(this.loop.bind(this));
-}
-
-openStore() {
-
-  this.storeModal
-    .open();
-
-}
-
-buyCard(
-  card
-) {
-  if (this.countCopies(card.id) >= 10) {
-    return { error: "You already have 10 copies of that card in your deck." };
+      const units = [squad.leader, ...squad.members];
+      if (units.some(unit => unit.x === p.x && unit.y === p.y)) {
+        this.startBattleWithSquad(squad);
+        break;
+      }
+    }
   }
 
-  const result = this.store.buy(this.profile, card);
-  if (!result) {
-    return { error: "Not enough funds to purchase that card." };
+  /* -----------------------------
+   * BATTLE
+   * ----------------------------- */
+  startBattleWithSquad(squad) {
+    if (this.mode === "combat") return;
+
+    this.mode = "combat";
+
+    squad.inBattle = true;
+    squad.retreating = false;
+    squad.cooldown = 0;
+
+    const enemies = [squad.leader, ...squad.members].map(u => ({
+      id: u.id,
+      name: u.name || "Enemy",
+      hp: u.hp,
+      atk: u.atk || 2,
+      def: u.def || 1,
+      status: {}
+    }));
+
+    this.battle.startEncounter({ enemies, worldSquad: squad });
+
+    this.modal.render(this.battle.snapshot());
   }
 
-  const added = this.sideboard.add(result.card);
-  if (!added) {
-    this.profile.marketCredit = (this.profile.marketCredit ?? 0) + result.creditUsed;
-    this.profile.gold = (this.profile.gold ?? 0) + result.goldUsed;
-    return { error: "You already have 10 copies of that card in your deck." };
+  /* -----------------------------
+   * LOOP
+   * ----------------------------- */
+  start() {
+    requestAnimationFrame(this.loop.bind(this));
   }
 
-  this.saveProfile?.();
-  return { result: result.card };
-}
+  openStore() {
 
-buyPack() {
-  // If player has unopened packs, consume one and open from production
-  const profile = this.profile || {};
-  let pack = null;
-  if ((profile.packs || 0) > 0) {
-    profile.packs = Math.max(0, (profile.packs || 0) - 1);
-    pack = this.store.openPack();
-  } else {
-    // attempt to buy with gold
-    const opened = this.store.buyPack(profile);
-    if (!opened || !opened.length) return { error: "Not enough gold to buy a pack or no packs available." };
-    pack = opened;
-  }
-
-  if (!pack || !pack.length) return { error: "Pack empty or no packs available." };
-
-  const added = [];
-  const skipped = [];
-  for (const c of pack) {
-    const ok = this.sideboard.add(c);
-    if (ok) added.push(c);
-    else skipped.push(c);
-  }
-
-  this.saveProfile?.();
-  return { result: added, skipped };
-}
-
-sellCard(cardId) {
-  const card = this.sideboard.cards.find((entry) => String(entry.id) === String(cardId));
-  if (!card) {
-    return { error: "No card found to sell." };
-  }
-
-  const credit = this.store.sell(this.profile, card);
-  if (!credit) {
-    return { error: "Unable to sell that card." };
-  }
-
-  this.sideboard.remove(cardId);
-  this.saveProfile?.();
-  return { result: credit };
-}
-
-countCopies(cardId) {
-  return this.sideboard.cards.filter((card) => String(card.id) === String(cardId)).length;
-}
-
-loop(now) {
-  const dt = Math.min(33, now - this.lastFrame);
-  this.lastFrame = now;
-
-  this.update(dt);
-  this.render();
-
-  requestAnimationFrame(this.loop.bind(this));
-}
-
-update(dt = 16) {
-  this.bottomBar.setActions(this.getBottomActions());
-
-  if (this.mode === "explore") {
-    this.updateExplore(dt);
-    this.updateWorldEnemies();
-    this.checkEnemyCollisions();
-  } else {
-
-    // if (
-    //   this.battle
-    //     ?.active
-    // ) {
-
-    //   this.battle
-    //     .refreshBattleModal();
-
-    // }
+    this.storeModal
+      .open();
 
   }
-  this.checkRaidCompletion();
 
-  this.hud.render();
-  this.handTray.render();
-}
+  buyCard(
+    card
+  ) {
+    if (this.countCopies(card.id) >= 10) {
+      return { error: "You already have 10 copies of that card in your deck." };
+    }
 
-onBottomAction(action) {
-  const battle = this.battle;
+    const result = this.store.buy(this.profile, card);
+    if (!result) {
+      return { error: "Not enough funds to purchase that card." };
+    }
 
-  switch (action) {
-    case "prevFlank":
-      battle?.prevFlank?.();
-      break;
+    const added = this.sideboard.add(result.card);
+    if (!added) {
+      this.profile.marketCredit = (this.profile.marketCredit ?? 0) + result.creditUsed;
+      this.profile.gold = (this.profile.gold ?? 0) + result.goldUsed;
+      return { error: "You already have 10 copies of that card in your deck." };
+    }
 
-    case "nextFlank":
-      battle?.nextFlank?.();
-      break;
+    this.saveProfile?.();
+    return { result: result.card };
+  }
 
-    case "target":
-      battle?.nextTarget?.();
-      break;
+  buyPack() {
+    // If player has unopened packs, consume one and open from production
+    const profile = this.profile || {};
+    let pack = null;
+    if ((profile.packs || 0) > 0) {
+      profile.packs = Math.max(0, (profile.packs || 0) - 1);
+      pack = this.store.openPack();
+    } else {
+      // attempt to buy with gold
+      const opened = this.store.buyPack(profile);
+      if (!opened || !opened.length) return { error: "Not enough gold to buy a pack or no packs available." };
+      pack = opened;
+    }
 
-    case "ability":
-      battle?.basicAttack?.();
-      break;
+    if (!pack || !pack.length) return { error: "Pack empty or no packs available." };
 
-    case "discard":
-    case "discardHand":
-      if (this.mode === "combat") {
-        if (typeof battle?.discardHand === "function") {
-          battle.discardHand();
-        } else {
-          const deck = battle?.deck;
-          const hand = deck?.hand || battle?.hand || battle?.playerHand || [];
-          if (deck?.deck && Array.isArray(hand)) {
-            while (hand.length) {
-              deck.deck.push(hand.shift());
-            }
-            if (typeof deck.drawTo === "function") {
-              deck.drawTo(6);
-            } else if (typeof battle?.drawHand === "function") {
-              battle.drawHand();
+    const added = [];
+    const skipped = [];
+    for (const c of pack) {
+      const ok = this.sideboard.add(c);
+      if (ok) added.push(c);
+      else skipped.push(c);
+    }
+
+    this.saveProfile?.();
+    return { result: added, skipped };
+  }
+
+  sellCard(cardId) {
+    const card = this.sideboard.cards.find((entry) => String(entry.id) === String(cardId));
+    if (!card) {
+      return { error: "No card found to sell." };
+    }
+
+    const credit = this.store.sell(this.profile, card);
+    if (!credit) {
+      return { error: "Unable to sell that card." };
+    }
+
+    this.sideboard.remove(cardId);
+    this.saveProfile?.();
+    return { result: credit };
+  }
+
+  countCopies(cardId) {
+    return this.sideboard.cards.filter((card) => String(card.id) === String(cardId)).length;
+  }
+
+  loop(now) {
+    const dt = Math.min(33, now - this.lastFrame);
+    this.lastFrame = now;
+
+    this.update(dt);
+    this.render();
+
+    requestAnimationFrame(this.loop.bind(this));
+  }
+
+  update(dt = 16) {
+    this.bottomBar.setActions(this.getBottomActions());
+
+    if (this.mode === "explore") {
+      this.updateExplore(dt);
+      this.updateWorldEnemies();
+      this.checkEnemyCollisions();
+    } else {
+
+      // if (
+      //   this.battle
+      //     ?.active
+      // ) {
+
+      //   this.battle
+      //     .refreshBattleModal();
+
+      // }
+
+    }
+    this.checkRaidCompletion();
+
+    this.hud.render();
+    this.handTray.render();
+  }
+
+  onBottomAction(action) {
+    const battle = this.battle;
+
+    switch (action) {
+      case "prevFlank":
+        battle?.prevFlank?.();
+        break;
+
+      case "nextFlank":
+        battle?.nextFlank?.();
+        break;
+
+      case "target":
+        battle?.nextTarget?.();
+        break;
+
+      case "ability":
+        battle?.basicAttack?.();
+        break;
+
+      case "discard":
+      case "discardHand":
+        if (this.mode === "combat") {
+          if (typeof battle?.discardHand === "function") {
+            battle.discardHand();
+          } else {
+            const deck = battle?.deck;
+            const hand = deck?.hand || battle?.hand || battle?.playerHand || [];
+            if (deck?.deck && Array.isArray(hand)) {
+              while (hand.length) {
+                deck.deck.push(hand.shift());
+              }
+              if (typeof deck.drawTo === "function") {
+                deck.drawTo(6);
+              } else if (typeof battle?.drawHand === "function") {
+                battle.drawHand();
+              }
             }
           }
+          this.modal?.render?.(battle?.snapshot?.());
         }
+        break;
+
+      case "endPhase":
+        battle?.endPhase?.();
         this.modal?.render?.(battle?.snapshot?.());
-      }
-      break;
+        break;
 
-    case "endPhase":
-      battle?.endPhase?.();
+      case "retreat":
+        if (this.mode === "combat") {
+          battle?.retreatBattle?.();
+          this.mode = "explore";
+          this.modal?.hide?.();
+        }
+        break;
+
+      case "inspect":
+      case "map":
+      case "move":
+      case "camp":
+      case "inventory":
+      case "menu":
+        break;
+
+      case "store":
+        this.openStore();
+        break;
+
+      case "deck":
+        try { this.deckCreator?.open(); } catch (e) { console.warn(e); }
+        break;
+
+      default:
+        console.log("Unhandled action:", action);
+    }
+
+    if (this.mode === "combat") {
       this.modal?.render?.(battle?.snapshot?.());
-      break;
-
-    case "retreat":
-      if (this.mode === "combat") {
-        battle?.retreatBattle?.();
-        this.mode = "explore";
-        this.modal?.hide?.();
-      }
-      break;
-
-    case "inspect":
-    case "map":
-    case "move":
-    case "camp":
-    case "inventory":
-    case "menu":
-      break;
-
-    case "store":
-      this.openStore();
-      break;
-
-    case "deck":
-      try { this.deckCreator?.open(); } catch (e) { console.warn(e); }
-      break;
-
-    default:
-      console.log("Unhandled action:", action);
+    }
   }
 
-  if (this.mode === "combat") {
-    this.modal?.render?.(battle?.snapshot?.());
-  }
-}
+  getBottomActions() {
 
-getBottomActions() {
+    if (
+      this.mode === "combat"
+    ) {
 
-  if (
-    this.mode === "combat"
-  ) {
+      return {
+
+        left: [
+
+          [
+            "Prev Flank",
+            "prevFlank"
+          ],
+
+          [
+            "Next Flank",
+            "nextFlank"
+          ],
+
+          [
+            "Target",
+            "target"
+          ],
+
+          [
+            "Ability",
+            "ability"
+          ]
+        ],
+
+        right: [
+
+          [
+            "Discard Hand",
+            "discardHand"
+          ],
+
+          [
+            "End Phase",
+            "endPhase"
+          ],
+
+          [
+            "Retreat",
+            "retreat"
+          ],
+
+          [
+            "Menu",
+            "menu"
+          ]
+        ]
+      };
+    }
 
     return {
 
       left: [
 
         [
-          "Prev Flank",
-          "prevFlank"
+          "Inspect",
+          "inspect"
         ],
 
         [
-          "Next Flank",
-          "nextFlank"
+          "Map",
+          "map"
         ],
 
         [
-          "Target",
-          "target"
-        ],
-
+          "Store",
+          "store"
+        ]
+        ,
         [
-          "Ability",
-          "ability"
+          "Deck",
+          "deck"
         ]
       ],
 
       right: [
 
         [
-          "Discard Hand",
-          "discardHand"
+          "Move",
+          "move"
         ],
 
         [
-          "End Phase",
-          "endPhase"
-        ],
-
-        [
-          "Retreat",
-          "retreat"
+          "Camp",
+          "camp"
         ],
 
         [
@@ -1143,192 +1317,147 @@ getBottomActions() {
     };
   }
 
-  return {
-
-    left: [
-
-      [
-        "Inspect",
-        "inspect"
-      ],
-
-      [
-        "Map",
-        "map"
-      ],
-
-      [
-        "Store",
-        "store"
-      ]
-      ,
-      [
-        "Deck",
-        "deck"
-      ]
-    ],
-
-    right: [
-
-      [
-        "Move",
-        "move"
-      ],
-
-      [
-        "Camp",
-        "camp"
-      ],
-
-      [
-        "Menu",
-        "menu"
-      ]
-    ]
-  };
-}
-
-updateExplore(dt = 16) {
-  this.moveCooldown = Math.max(0, this.moveCooldown - dt);
-  if (this.moveCooldown > 0) return;
-  if (!this.stepPlayerFromInput()) return;
-  this.moveCooldown = this.moveInterval;
-}
-
-stepPlayerFromInput() {
-  const p = this.state.player;
-
-  let dx = 0;
-  let dy = 0;
-
-  if (this.input.consumePressed("ArrowUp") || this.input.consumePressed("w")) dy -= 1;
-  if (this.input.consumePressed("ArrowDown") || this.input.consumePressed("s")) dy += 1;
-  if (this.input.consumePressed("ArrowLeft") || this.input.consumePressed("a")) dx -= 1;
-  if (this.input.consumePressed("ArrowRight") || this.input.consumePressed("d")) dx += 1;
-
-  if (dx === 0 && dy === 0) {
-    if (this.input.isDown("ArrowUp") || this.input.isDown("w")) dy -= 1;
-    if (this.input.isDown("ArrowDown") || this.input.isDown("s")) dy += 1;
-    if (this.input.isDown("ArrowLeft") || this.input.isDown("a")) dx -= 1;
-    if (this.input.isDown("ArrowRight") || this.input.isDown("d")) dx += 1;
+  updateExplore(dt = 16) {
+    this.moveCooldown = Math.max(0, this.moveCooldown - dt);
+    if (this.moveCooldown > 0) return;
+    if (!this.stepPlayerFromInput()) return;
+    this.moveCooldown = this.moveInterval;
   }
 
-  if (dx === 0 && dy === 0) return false;
+  stepPlayerFromInput() {
+    const p = this.state.player;
 
-  const nx = p.x + dx;
-  const ny = p.y + dy;
-  if (!this.isWalkable(nx, ny)) return false;
+    let dx = 0;
+    let dy = 0;
 
-  p.x = nx;
-  p.y = ny;
-  this.onPlayerStep();
-  return true;
-}
+    if (this.input.consumePressed("ArrowUp") || this.input.consumePressed("w")) dy -= 1;
+    if (this.input.consumePressed("ArrowDown") || this.input.consumePressed("s")) dy += 1;
+    if (this.input.consumePressed("ArrowLeft") || this.input.consumePressed("a")) dx -= 1;
+    if (this.input.consumePressed("ArrowRight") || this.input.consumePressed("d")) dx += 1;
 
-playCard(index) {
-  if (this.mode !== "combat") return false;
-  return this.battle?.playCard?.(index) || false;
-}
+    if (dx === 0 && dy === 0) {
+      if (this.input.isDown("ArrowUp") || this.input.isDown("w")) dy -= 1;
+      if (this.input.isDown("ArrowDown") || this.input.isDown("s")) dy += 1;
+      if (this.input.isDown("ArrowLeft") || this.input.isDown("a")) dx -= 1;
+      if (this.input.isDown("ArrowRight") || this.input.isDown("d")) dx += 1;
+    }
 
-onBattleResult(result) {
-  this.mode = "explore";
-  this.modal?.hide?.();
-  this.battle?.exit?.();
+    if (dx === 0 && dy === 0) return false;
 
-  if (result === "win") {
-    this.raidCompleted = Math.min(3000, (this.raidCompleted || 0) + 1);
-    this.raidsCompleted = this.raidCompleted;
-    this.currentRaid = this.getCurrentRaid();
-    this.saveProfile?.();
-  }
-}
+    const nx = p.x + dx;
+    const ny = p.y + dy;
+    if (!this.isWalkable(nx, ny)) return false;
 
-render() {
-  const ctx = this.ctx;
-  const w = this.canvas.clientWidth || this.canvas.width;
-  const h = this.canvas.clientHeight || this.canvas.height;
-
-  ctx.clearRect(0, 0, w, h);
-
-  const originY = Math.max(120, h / 3 - 110);
-
-  if (this.currentGrid && this.iso?.drawGrid) {
-    this.iso.drawGrid(
-      ctx,
-      this.currentGrid,
-      w / 2,
-      originY,
-      this.theme
-    );
+    p.x = nx;
+    p.y = ny;
+    this.onPlayerStep();
+    return true;
   }
 
-  if (this.state?.player && this.iso?.drawEntity) {
-    this.iso.drawEntity(
-      ctx,
-      this.state.player.x,
-      this.state.player.y,
-      w / 2,
-      originY,
-      this.theme.player || "#00c8ff",
-      "P"
-    );
+  playCard(index) {
+    if (this.mode !== "combat") return false;
+    return this.battle?.playCard?.(index) || false;
   }
 
-  if (Array.isArray(this.enemySquads)) {
-    for (const squad of this.enemySquads) {
-      for (const unit of [squad.leader, ...(squad.members || [])]) {
-        if (!unit || !this.iso?.drawEntity) continue;
-        const color = unit.hp <= 0 ? "#666" : (this.theme.enemy || "#ff4d5a");
-        this.iso.drawEntity(
-          ctx,
-          unit.x,
-          unit.y,
-          w / 2,
-          originY,
-          color,
-          unit.hp <= 0 ? "×" : ""
-        );
+  onBattleResult(result) {
+    this.mode = "explore";
+    this.modal?.hide?.();
+    this.battle?.exit?.();
+
+    if (result === "win") {
+      this.raidCompleted = Math.min(3000, (this.raidCompleted || 0) + 1);
+      this.raidsCompleted = this.raidCompleted;
+      this.currentRaid = this.getCurrentRaid();
+      this.saveProfile?.();
+    }
+  }
+
+  render() {
+    const ctx = this.ctx;
+    const w = this.canvas.clientWidth || this.canvas.width;
+    const h = this.canvas.clientHeight || this.canvas.height;
+
+    ctx.clearRect(0, 0, w, h);
+
+    const originY = Math.max(120, h / 3 - 110);
+
+    if (this.currentGrid && this.iso?.drawGrid) {
+      this.iso.drawGrid(
+        ctx,
+        this.currentGrid,
+        w / 2,
+        originY,
+        this.theme
+      );
+    }
+
+    if (this.state?.player && this.iso?.drawEntity) {
+      this.iso.drawEntity(
+        ctx,
+        this.state.player.x,
+        this.state.player.y,
+        w / 2,
+        originY,
+        this.theme.player || "#00c8ff",
+        "P"
+      );
+    }
+
+    if (Array.isArray(this.enemySquads)) {
+      for (const squad of this.enemySquads) {
+        for (const unit of [squad.leader, ...(squad.members || [])]) {
+          if (!unit || !this.iso?.drawEntity) continue;
+          const color = unit.hp <= 0 ? "#666" : (this.theme.enemy || "#ff4d5a");
+          this.iso.drawEntity(
+            ctx,
+            unit.x,
+            unit.y,
+            w / 2,
+            originY,
+            color,
+            unit.hp <= 0 ? "×" : ""
+          );
+        }
       }
     }
   }
-}
 
-/* -----------------------------
- * HELPERS
- * ----------------------------- */
-createPlayerSquad() {
-  const level = this.profile?.level || 1;
-  const xpBonus = Math.floor((level - 1) / 2);
-  return [
-    { id: "p1", name: "Frontliner", hp: 10 + level - 1, atk: 3 + xpBonus, def: 2 + xpBonus },
-    { id: "p2", name: "Ranger", hp: 7 + level - 1, atk: 4 + xpBonus, def: 1 + xpBonus },
-    { id: "p3", name: "Mage", hp: 6 + level - 1, atk: 5 + xpBonus, def: xpBonus }
-  ];
-}
-
-_resize() {
-  const dpr = Math.max(1, window.devicePixelRatio || 1);
-  const rect = this.canvas.getBoundingClientRect();
-
-  this.canvas.width = rect.width * dpr;
-  this.canvas.height = rect.height * dpr;
-
-  this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
-
-loadClientId() {
-  try {
-    const key = "tre_client_id";
-    let id = localStorage.getItem(key);
-
-    if (!id) {
-      id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-      localStorage.setItem(key, id);
-    }
-
-    return id;
-  } catch {
-    return Date.now() + "";
+  /* -----------------------------
+   * HELPERS
+   * ----------------------------- */
+  createPlayerSquad() {
+    const level = this.profile?.level || 1;
+    const xpBonus = Math.floor((level - 1) / 2);
+    return [
+      { id: "p1", name: "Frontliner", hp: 10 + level - 1, atk: 3 + xpBonus, def: 2 + xpBonus },
+      { id: "p2", name: "Ranger", hp: 7 + level - 1, atk: 4 + xpBonus, def: 1 + xpBonus },
+      { id: "p3", name: "Mage", hp: 6 + level - 1, atk: 5 + xpBonus, def: xpBonus }
+    ];
   }
-}
+
+  _resize() {
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    const rect = this.canvas.getBoundingClientRect();
+
+    this.canvas.width = rect.width * dpr;
+    this.canvas.height = rect.height * dpr;
+
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  loadClientId() {
+    try {
+      const key = "tre_client_id";
+      let id = localStorage.getItem(key);
+
+      if (!id) {
+        id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        localStorage.setItem(key, id);
+      }
+
+      return id;
+    } catch {
+      return Date.now() + "";
+    }
+  }
 }

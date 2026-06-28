@@ -2,45 +2,105 @@ export class HUD {
   constructor(game) {
     this.game = game;
     this.el = document.getElementById("hud");
+    this.notifications = [];
+    this.unreadNotifications = 0;
+    this.showChronicle = false;
   }
 
-renderMiniMap() {
-  const game = this.game;
-  const player = game?.state?.player || game?.player || {};
-  const roomX = player.roomX ?? 25;
-  const roomY = player.roomY ?? 25;
-  const raid = game.currentRaid || {};
-  const tx = Number(raid.roomX ?? roomX);
-  const ty = Number(raid.roomY ?? roomY);
-  const dx = tx - roomX;
-  const dy = ty - roomY;
-  const atTarget = dx === 0 && dy === 0;
+  addNotification(notification) {
 
-  let navX = 0;
-  let navY = 0;
-  if (!atTarget) {
-    if (Math.abs(dx) >= Math.abs(dy)) navX = Math.sign(dx);
-    else navY = Math.sign(dy);
+    this.notifications.unshift({
+
+      time: Date.now(),
+
+      ...notification
+
+    });
+
+    if (this.notifications.length > 500)
+      this.notifications.pop();
+
+    this.unreadNotifications++;
+
   }
 
-  let html = `<div style="display:flex;flex-direction:column;gap:1px;margin-top:4px">`;
-  for (let y = -2; y <= 2; y++) {
-    html += `<div style="display:flex;gap:1px">`;
-    for (let x = -2; x <= 2; x++) {
-      let color = "#fff";
-      if (x === 0 && y === 0) color = atTarget ? "#f33" : "#39f";
-      else if (x === navX && y === navY) color = "#f33";
-      html += `<div style="width:6px;height:6px;background:${color};border-radius:1px"></div>`;
-    }
-    html += `</div>`;
-  }
+  toggleChronicle() {
 
-  const xText = dx === 0 ? "X ✓" : `${dx > 0 ? "E" : "W"} ${Math.abs(dx)}`;
-  const yText = dy === 0 ? "Y ✓" : `${dy > 0 ? "S" : "N"} ${Math.abs(dy)}`;
+    this.showChronicle = !this.showChronicle;
 
-  html += `<div style="font-size:10px;margin-top:3px">${xText} · ${yText}</div></div>`;
-  return html;
+    if (this.showChronicle)
+        this.unreadNotifications = 0;
+
+    this.render();
+
 }
+
+renderChronicle() {
+
+    if (!this.showChronicle)
+        return "";
+
+    let html = `
+        <div class="chronicle">
+            <h3>📜 Chronicle</h3>
+    `;
+
+    for (const msg of this.notifications) {
+
+        html += `
+            <div class="chronicle-entry">
+
+                <b>${msg.title}</b><br>
+
+                ${msg.text}
+
+            </div>
+        `;
+
+    }
+
+    html += "</div>";
+
+    return html;
+
+}
+  renderMiniMap() {
+    const game = this.game;
+    const player = game?.state?.player || game?.player || {};
+    const roomX = player.roomX ?? 25;
+    const roomY = player.roomY ?? 25;
+    const raid = game.currentRaid || {};
+    const tx = Number(raid.roomX ?? roomX);
+    const ty = Number(raid.roomY ?? roomY);
+    const dx = tx - roomX;
+    const dy = ty - roomY;
+    const atTarget = dx === 0 && dy === 0;
+
+    let navX = 0;
+    let navY = 0;
+    if (!atTarget) {
+      if (Math.abs(dx) >= Math.abs(dy)) navX = Math.sign(dx);
+      else navY = Math.sign(dy);
+    }
+
+    let html = `<div style="display:flex;flex-direction:column;gap:1px;margin-top:4px">`;
+    for (let y = -2; y <= 2; y++) {
+      html += `<div style="display:flex;gap:1px">`;
+      for (let x = -2; x <= 2; x++) {
+        let color = "#fff";
+        if (x === 0 && y === 0) color = atTarget ? "#f33" : "#39f";
+        else if (x === navX && y === navY) color = "#f33";
+        html += `<div style="width:6px;height:6px;background:${color};border-radius:1px"></div>`;
+      }
+      html += `</div>`;
+    }
+
+    const xText = dx === 0 ? "X ✓" : `${dx > 0 ? "E" : "W"} ${Math.abs(dx)}`;
+    const yText = dy === 0 ? "Y ✓" : `${dy > 0 ? "S" : "N"} ${Math.abs(dy)}`;
+
+    html += `<div style="font-size:10px;margin-top:3px">${xText} · ${yText}</div></div>`;
+    return html;
+  }
   render() {
     if (!this.el) return;
 
@@ -132,10 +192,21 @@ renderMiniMap() {
       game.mode || "explore"
     ).toUpperCase()}</b>
       </div>
+      <div class="hud-pill chronicle-button"
+     onclick="window.game?.hud?.toggleChronicle()">
+
+📜
+
+${this.unreadNotifications
+    ? `<span class="notify-dot"></span>`
+    : ""}
+
+</div>
 
       ${this.renderMiniMap()}
 
       ${marketHtml}
+      ${this.renderChronicle()}
     `;
   }
 }
