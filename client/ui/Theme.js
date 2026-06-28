@@ -1,0 +1,21 @@
+export const Theme = {
+  bg: "#eaf1f7",
+  panel: "#f8fbff",
+  panelStrong: "#e7edf5",
+  ink: "#112033",
+  muted: "#516173",
+  line: "#c7d1dd",
+  accent: "#1f5fff",
+  attack: "#ff7755",
+  defense: "#3aa7ff",
+  spell: "#8a4dff",
+  gold: "#e2b64b",
+  player: "#00c8ff",
+  enemy: "#ff4d5a",
+  terrain: "#7f8da0",
+  stone: "#c3ccd7",
+  stoneDark: "#91a0b3",
+  floor: "#e2e9f2",
+  caveDown: "#161d28",
+  caveUp: "#f2c94c"
+};

@@ -1,0 +1,1 @@
+Rooms connect continuously by edge traversal; walking off one side loads the adjacent room.

@@ -1,0 +1,1 @@
+export function firstDescent(state){state.cards=[];state.gold=10000;return state;}

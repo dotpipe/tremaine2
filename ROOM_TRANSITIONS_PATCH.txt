@@ -1,0 +1,15 @@
+ROOM TRANSITION PATCH
+
+Problem fixed:
+Openings existed but movement still treated border crossing as blocked.
+
+New rule:
+If player attempts to move onto a border opening:
+- stay on same depth
+- move room coordinate
+- spawn opposite edge
+
+LEFT  -> roomX-1
+RIGHT -> roomX+1
+UP    -> roomY-1
+DOWN  -> roomY+1

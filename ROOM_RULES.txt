@@ -1,0 +1,1 @@
+Reaching border openings creates a fresh room with new walls and stores it under current depth coordinates. No room wrapping.

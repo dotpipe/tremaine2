@@ -1,0 +1,1 @@
+export const favoredBonus=1.0; export const secondaryBonus=.8;

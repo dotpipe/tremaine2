@@ -1,0 +1,1 @@
+export class Hold{constructor(capacity=5){this.max=capacity;this.boltz=capacity;}reset(){this.boltz=this.max;}}

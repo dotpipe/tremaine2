@@ -1,0 +1,1 @@
+export function tryTransition(state,rm,gen,dx,dy){const p=state.player,g=state.grid; if(!g||!g[p.y]) return false; if(g[p.y][p.x]!==4) return false; p.roomX=(p.roomX||25)+Math.sign(dx); p.roomY=(p.roomY||25)+Math.sign(dy); state.grid=rm.get(p.depth||0,p.roomX,p.roomY,()=>gen((p.depth||0)*1000000+p.roomX*1000+p.roomY)); p.x=12;p.y=12; return true;}

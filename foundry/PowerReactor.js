@@ -1,0 +1,1 @@
+export class PowerReactor{feed(hold){if(hold.boltz<hold.max)hold.boltz++;}}

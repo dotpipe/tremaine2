@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tremaine Dungeon Card Engine</title>
+  <style>
+    :root{
+      --bg:#eef3f8;
+      --panel:#f8fbff;
+      --panel-strong:#e7edf5;
+      --ink:#112033;
+      --muted:#516173;
+      --line:#c7d1dd;
+      --accent:#1f5fff;
+      --attack:#ff7755;
+      --defense:#3aa7ff;
+      --spell:#8a4dff;
+      --gold:#e2b64b;
+      --player:#00c8ff;
+      --enemy:#ff4d5a;
+      --terrain:#7f8da0;
+      --shadow:0 10px 25px rgba(15,25,40,.14);
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;overflow:hidden;}
+    #app{position:relative;width:100vw;height:100vh;overflow:hidden;}
+    #mapCanvas{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      display:block;
+      background:linear-gradient(180deg,#dfe8f1 0%, #eaf1f7 55%, #dde6ef 100%);
+      z-index:1;
+    }
+    #hud{
+      position:absolute;left:14px;top:14px;z-index:15;
+      display:flex;gap:10px;flex-wrap:wrap;
+      pointer-events:none;
+    }
+    .hud-pill{
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;
+      font-weight:700;
+      color:var(--ink);
+    }
+    .hud-pill b{color:var(--accent);}
+    #battleModal{
+      position:absolute;
+      top:12px;
+      right:12px;
+      bottom:188px;
+      left:12px;
+      z-index:30;
+      display:none;
+      pointer-events:none;
+      align-items:center;justify-content:center;
+      min-height:0;
+    }
+    #battleModal.show{display:flex;}
+    #storeModal{
+      position:absolute;
+      top:12px;
+      right:12px;
+      bottom:188px;
+      left:12px;
+      z-index:10001;
+      display:none;
+      pointer-events:auto;
+      align-items:center;
+      justify-content:center;
+      min-height:0;
+    }
+    #storeModal.show{display:flex;}
+    .store-shell{pointer-events:auto}
+    .store-shell{background:rgba(255,255,255,.96);}
+    .store-status{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin:12px 0;
+      font-size:13px;
+      color:var(--ink);
+    }
+    .store-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      overflow:auto;
+      padding:8px;
+      max-height:calc(100% - 120px);
+    }
+    .store-card{
+      background:#fff;
+      border:1px solid #d2dbe6;
+      border-radius:18px;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      height:auto;
+      min-height:140px;
+      align-items:stretch;
+    }
+    .store-card-title{
+      font-size:15px;
+      font-weight:900;
+      color:#102033;
+    }
+    .store-card-info{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-auto-rows:minmax(min-content,max-content);
+      align-items:start;
+      gap:6px;
+      font-size:11px;
+      color:#516173;
+    }
+    .store-card-description{
+      font-size:12px;
+      color:#516173;
+      line-height:1.4;
+      min-height:40px;
+    }
+    .battle-shell{
+      width:min(1180px,100%);
+      height:100%;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(120,140,170,.7);
+      box-shadow:0 18px 48px rgba(24,36,54,.24);
+      border-radius:24px;
+      backdrop-filter:blur(8px);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1.05fr 1.2fr .95fr;
+      gap:0;
+      min-height:0;
+      max-height:100%;
+    }
+    .battle-pane{
+      padding:18px;
+      border-right:1px solid rgba(160,175,195,.55);
+      display:flex;flex-direction:column;gap:12px;
+      color:var(--ink);
+      min-height:0;
+      overflow:hidden;
+    }
+    .battle-pane:last-child{border-right:none;}
+    .battle-title{
+      font-size:22px;font-weight:900;letter-spacing:.02em;
+      color:#15304f;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .battle-sub{
+      font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    }
+    .squad{
+      display:grid;gap:10px;
+    }
+    .unit{
+      background:#fff;
+      border:2px solid #c9d3df;
+      border-radius:16px;
+      padding:10px 12px;
+      display:flex;justify-content:space-between;align-items:center;
+      box-shadow:0 6px 18px rgba(21,36,58,.08);
+    }
+    .unit strong{display:block;font-size:14px;}
+    .unit small{display:block;color:var(--muted);font-size:11px;}
+    .unit.player{border-color:rgba(0,200,255,.45);}
+    .unit.enemy{border-color:rgba(255,77,90,.45);}
+    .unit.dead{opacity:.38;text-decoration:line-through;}
+    .tag{
+      font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef4fb;color:#19324f;
+      border:1px solid #d3deea;
+    }
+    .tag.attack{background:#ffe9e3;color:#8f2f18;border-color:#ffc4b2;}
+    .tag.defense{background:#e2f2ff;color:#114f8a;border-color:#b9ddff;}
+    .tag.spell{background:#f0e8ff;color:#5a2ec9;border-color:#d7c0ff;}
+    .battle-log{
+      background:#f7f9fc;border:1px solid #d6deea;border-radius:18px;padding:12px;
+      flex:1 1 auto;
+      min-height:0;
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-gutter: stable;
+      font-size:13px;
+      line-height:1.45;
+    }
+    .battle-log .line{padding:6px 8px;border-bottom:1px dashed #dde5ef;}
+    .battle-log .line:last-child{border-bottom:none;}
+    #bottomBar{
+      position:absolute;left:12px;right:12px;bottom:12px;height:160px;
+      z-index:40;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(159,174,196,.75);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns: 220px 1fr 220px;
+      gap:12px;
+      padding:12px;
+      pointer-events:auto;
+    }
+    .panel{
+      background:linear-gradient(180deg,#fff 0%, #f3f7fb 100%);
+      border:1px solid #d2dbe6;
+      border-radius:18px;
+      padding:10px;
+      display:flex;flex-direction:column;gap:8px;
+      overflow:hidden;
+    }
+    .panel h3{
+      margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#4d6280;
+    }
+    .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    button{
+      border:none;border-radius:14px;padding:10px 12px;font-weight:800;cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      box-shadow:0 8px 18px rgba(22,36,58,.10);
+      color:#102033;
+      background:#fff;
+    }
+    button:hover{transform:translateY(-1px);filter:brightness(1.01);}
+    button:active{transform:translateY(1px) scale(.99);}
+    button.action{background:#f0f5fb;border:1px solid #d5e0ec;}
+    button.attack{background:linear-gradient(180deg,#ffd0c4,#ff9f89);border:1px solid #ff8c72;}
+    button.defense{background:linear-gradient(180deg,#d8efff,#97cdf7);border:1px solid #7db9ee;}
+    button.spell{background:linear-gradient(180deg,#e7ddff,#cab2ff);border:1px solid #b18eff;}
+    button.utility{background:linear-gradient(180deg,#f2f4f8,#e6ecf5);border:1px solid #d0d9e4;}
+    button[disabled]{opacity:.45;cursor:not-allowed;filter:saturate(.8);}
+    #handTray{
+      background:linear-gradient(180deg,#eef3f9,#f8fbff);
+      border:1px solid #d4dde8;
+      border-radius:18px;
+      padding:10px;
+      overflow:auto;
+    }
+    .hand-head{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:10px;
+      gap:10px;
+    }
+    .hand-head .meta{font-size:12px;color:var(--muted);font-weight:800;}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:8px;
+    }
+    .card{
+      min-height:104px;
+      border-radius:16px;
+      border:2px solid #405267;
+      background:#fff;
+      padding:10px;
+      text-align:left;
+      position:relative;
+      overflow:hidden;
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .card .name{font-size:13px;font-weight:900;line-height:1.2;color:#102033;}
+    .card .meta{font-size:11px;color:#5e7087;font-weight:700;}
+    .card .stats{display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-top:4px;color:#102033;}
+    .card.attack{border-color:#ff8f71;background:linear-gradient(180deg,#fff8f5,#ffe7e1);}
+    .card.defense{border-color:#7cbcf4;background:linear-gradient(180deg,#f6fbff,#e3f1ff);}
+    .card.spell{border-color:#b18eff;background:linear-gradient(180deg,#fbf8ff,#efe5ff);}
+    .card.common{box-shadow:0 8px 14px rgba(60,80,105,.08);}
+    .card.uncommon{border-width:3px;}
+    .card.rare{box-shadow:0 0 0 2px rgba(59,140,255,.08),0 8px 14px rgba(60,80,105,.08);}
+    .card.epic{box-shadow:0 0 0 2px rgba(167,86,255,.08),0 8px 14px rgba(60,80,105,.08);}
+    .card.legendary{box-shadow:0 0 0 2px rgba(226,182,75,.12),0 10px 18px rgba(60,80,105,.08);}
+    .card .rarity{
+      position:absolute;top:8px;right:8px;font-size:10px;font-weight:900;text-transform:uppercase;
+      padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid rgba(20,35,55,.12);
+    }
+    .card .special{
+      font-size:10px;font-weight:900;color:#6143ad;
+    }
+    .card.disabled{opacity:.45;filter:saturate(.75);}
+    #campaignInset{
+      position:absolute;right:18px;top:82px;z-index:8;
+      width:280px;height:150px;background:rgba(255,255,255,.86);
+      border:1px solid rgba(150,165,185,.7);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      pointer-events:none;
+    }
+    .inset-title{
+      position:absolute;left:10px;top:8px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#4d6280;
+    }
+
+    @media (max-width: 980px), (max-height: 780px){
+      #battleModal{
+        top:8px;
+        right:8px;
+        left:8px;
+        bottom:176px;
+      }
+      .battle-shell{
+        grid-template-columns:1fr;
+        grid-template-rows:auto minmax(0,1fr) auto;
+      }
+      .battle-pane{
+        border-right:none;
+        border-bottom:1px solid rgba(160,175,195,.55);
+        padding:14px;
+      }
+      .battle-pane:last-child{
+        border-bottom:none;
+      }
+      .battle-title{font-size:18px;}
+      .battle-log{max-height:22vh;}
+    }
+
+    @media (max-width: 760px), (max-height: 680px){
+      #battleModal{
+        bottom:170px;
+      }
+      .battle-shell{
+        border-radius:18px;
+      }
+      .battle-pane{padding:12px;gap:10px;}
+      .squad{gap:8px;}
+      .unit{padding:8px 10px;border-radius:14px;}
+      .battle-log{max-height:18vh;}
+      #bottomBar{height:150px;}
+      #campaignInset{display:none;}
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <canvas id="mapCanvas"></canvas>
+
+  <div id="hud"></div>
+
+  <div id="battleModal">
+    <div class="battle-shell">
+      <div class="battle-pane">
+        <div class="battle-title"><span>Player Platoon</span><span class="tag" id="battleOwnerTag">ATTACK</span></div>
+        <div class="battle-sub" id="playerPhaseText">Phase</div>
+        <div class="squad" id="playerSquad"></div>
+      </div>
+      <div class="battle-pane">
+        <div class="battle-title"><span>Battlefield</span><span class="tag" id="battlePhiTag">Phi 0</span></div>
+        <div class="battle-sub" id="battlePhaseText">Combat flow</div>
+        <div class="battle-log" id="battleLog"></div>
+      </div>
+      <div class="battle-pane">
+        <div class="battle-title"><span>Enemy Platoon</span><span class="tag" id="battleBudgetTag">Roll 0</span></div>
+        <div class="battle-sub" id="enemyPhaseText">Opponent</div>
+        <div class="squad" id="enemySquad"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="storeModal">
+    <div class="battle-shell store-shell">
+      <div class="battle-pane">
+        <div class="battle-title">
+          <span>Card Shop</span>
+          <button id="storeClose" type="button" class="action">Close</button>
+        </div>
+        <div class="battle-sub">Purchase cards from the current library.</div>
+        <div class="store-status">
+          <div>Gold: <strong id="storeGold">$0.00</strong></div>
+          <div id="storeMessage">Choose a card to buy.</div>
+        </div>
+        <div id="storeCardGrid" class="store-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottomBar">
+    <div class="panel">
+      <h3>Commands</h3>
+      <div class="btn-grid" id="leftButtons"></div>
+    </div>
+    <div id="handTray">
+      <div class="hand-head">
+        <div>
+          <div style="font-size:12px;font-weight:900;color:#4d6280;text-transform:uppercase;letter-spacing:.08em;">Cards</div>
+          <div class="meta" id="handMeta">Hand ready</div>
+        </div>
+        <div class="meta" id="turnMeta">Explore</div>
+      </div>
+      <div class="cards" id="cardList"></div>
+    </div>
+    <div class="panel">
+      <h3>Battle</h3>
+      <div class="btn-grid" id="rightButtons"></div>
+    </div>
+  </div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

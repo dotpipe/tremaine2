@@ -1,0 +1,1 @@
+Card fields: id,name,type,rarity,attack,defense,cost,special

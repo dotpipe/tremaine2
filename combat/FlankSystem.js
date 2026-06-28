@@ -1,0 +1,1 @@
+export const MIN_SQUAD=3; export const HUMAN_ONLY=true;

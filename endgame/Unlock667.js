@@ -1,0 +1,1 @@
+export const canUnlock667=(raids)=>raids>=3000;

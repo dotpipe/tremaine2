@@ -1,0 +1,1 @@
+export class RoomManager{constructor(){this.cache={}}key(d,x,y){return `${d}:${x}:${y}`}get(d,x,y,gen){const k=this.key(d,x,y);if(!this.cache[k])this.cache[k]=gen();return this.cache[k]}}

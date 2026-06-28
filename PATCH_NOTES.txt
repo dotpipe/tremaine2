@@ -1,0 +1,12 @@
+ZIP 21 START
+
+Goal:
+Leaving and returning to a room restores the exact same room.
+
+Integration points:
+- Save currentGrid before room transition
+- Load saved grid after transition
+- Key = depth:roomX:roomY
+
+No renderer changes.
+No movement changes.

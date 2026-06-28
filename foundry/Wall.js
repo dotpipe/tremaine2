@@ -1,0 +1,1 @@
+export class Wall{constructor(v=10){this.integrity=v;}hit(v){this.integrity-=v;return this.integrity<=0;}}

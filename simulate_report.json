@@ -1,0 +1,96 @@
+{
+  "packsAttempted": 100000,
+  "packsOpened": 100000,
+  "revenue": 300000,
+  "rarityCounts": {
+    "common": 100000,
+    "uncommon": 193236,
+    "ultra": 5315,
+    "legendary": 524,
+    "rare": 504,
+    "epic": 421
+  },
+  "topNames": [
+    [
+      "Radiant Burn Rend",
+      4196
+    ],
+    [
+      "Obsidian Bolt 2",
+      4135
+    ],
+    [
+      "Azure Blast",
+      4108
+    ],
+    [
+      "Gloom Cleave",
+      4106
+    ],
+    [
+      "Gloom Glyph",
+      4106
+    ],
+    [
+      "Infernal Slash",
+      4104
+    ],
+    [
+      "Glacial Bolt",
+      4096
+    ],
+    [
+      "Thunder Splash Mantle",
+      4082
+    ],
+    [
+      "Radiant Flare",
+      4081
+    ],
+    [
+      "Lunar Bulwark",
+      4075
+    ],
+    [
+      "Lunar Smash",
+      4074
+    ],
+    [
+      "Infernal Guard",
+      4073
+    ],
+    [
+      "Mire Bulwark",
+      4066
+    ],
+    [
+      "Stone Blast",
+      4064
+    ],
+    [
+      "Wind Palisade",
+      4059
+    ],
+    [
+      "Azure Freeze Guard",
+      4056
+    ],
+    [
+      "Ethereal Mantle",
+      4053
+    ],
+    [
+      "Ethereal Rend",
+      4052
+    ],
+    [
+      "Solar Rift",
+      4051
+    ],
+    [
+      "Mire Jab",
+      4049
+    ]
+  ],
+  "marketIndex": 0
+}

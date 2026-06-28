@@ -1,0 +1,1 @@
+export const connection=(xp)=>Math.min(100,Math.floor(Math.sqrt(xp)*4));

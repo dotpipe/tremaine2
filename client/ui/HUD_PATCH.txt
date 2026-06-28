@@ -1,0 +1,9 @@
+Add HUD room coordinates.
+
+Display:
+Depth: {depth}
+Room: ({roomX},{roomY})
+
+Read values from:
+state.player.roomX
+state.player.roomY

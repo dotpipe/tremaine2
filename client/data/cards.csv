@@ -1,0 +1,301 @@
+id,name,type,cost,attack,defense,triggers,duration,special,counters,play_requirement,rarity,description
+203,Silent Bastion,Defense,0,0,9,,,,0,,Common,Provides 9 defense. Guild:Bulwark.
+60,Radiant Rend,Attack,0,4,0,,,,0,,Common,Deals 4 attack damage. Guild:Vanguard.
+114,Silent Barrage 2,Attack,0,10,0,,,,0,,Common,Deals 10 attack damage. Guild:Vanguard.
+16,Solar Jab 2,Attack,0,12,0,,,,0,,Common,Deals 12 attack damage. Guild:Vanguard.
+125,Radiant Bulwark,Defense,1,0,7,,,,0,,Common,Provides 7 defense. Guild:Bulwark.
+68,Spectral Pierce,Attack,2,3,0,,,,0,,Common,Deals 3 attack damage. Guild:Vanguard.
+2,Verdant Smash,Attack,2,4,0,,,,0,,Common,Deals 4 attack damage. Guild:Vanguard.
+3,Solar Jab,Attack,2,4,0,,,,0,,Common,Deals 4 attack damage. Guild:Vanguard.
+50,Crimson Bolt,Attack,2,7,0,,,,0,,Common,Deals 7 attack damage. Guild:Vanguard.
+98,Razor Cleave,Attack,2,7,0,,,,0,,Common,Deals 7 attack damage. Guild:Vanguard.
+117,Iron Rend,Attack,2,9,0,,,,0,,Common,Deals 9 attack damage. Guild:Vanguard.
+200,Verdant Ward,Defense,3,0,12,,,,0,,Common,Provides 12 defense. Guild:Bulwark.
+158,Infernal Bastion,Defense,3,0,14,,,,0,,Common,Provides 14 defense. Guild:Bulwark.
+43,Verdant Cleave,Attack,3,2,0,,,,0,,Common,Deals 2 attack damage. Guild:Vanguard.
+59,Gloom Barrage,Attack,3,7,0,,,,0,,Common,Deals 7 attack damage. Guild:Vanguard.
+76,Mire Slash,Attack,3,8,0,,,,0,,Common,Deals 8 attack damage. Guild:Vanguard.
+7,Obsidian Barrage,Attack,3,10,0,,,,0,,Common,Deals 10 attack damage. Guild:Vanguard.
+88,Wind Chop,Attack,3,11,0,,,,0,,Common,Deals 11 attack damage. Guild:Vanguard.
+197,Razor Aegis 3,Defense,4,0,6,,,,0,,Common,Provides 6 defense. Guild:Bulwark.
+163,Spectral Guard,Defense,5,0,8,,,,0,,Common,Provides 8 defense. Guild:Bulwark.
+64,Verdant Rend,Attack,5,7,0,,,,0,,Common,Deals 7 attack damage. Guild:Vanguard.
+39,Infernal Barrage,Attack,5,10,0,,,,0,,Common,Deals 10 attack damage. Guild:Vanguard.
+199,Thunder Freeze Shield,Defense,0,0,1,,,Freeze,0,,Common,Provides 1 defense. Special: Freeze. Guild:Bulwark.
+37,Iron Stun Strike,Attack,0,11,0,,,Stun,0,,Common,Deals 11 attack damage. Special: Stun. Guild:Vanguard.
+69,Thunder Slash,Attack,2,5,0,,,Stun,0,,Common,Deals 5 attack damage. Special: Stun. Guild:Vanguard.
+101,Spectral Smash 2,Attack,2,7,0,,,Stun,0,,Common,Deals 7 attack damage. Special: Stun. Guild:Vanguard.
+165,Wind Bulwark,Defense,0,0,3,1,,,0,Trigger:1,Common,Provides 3 defense. Play requirement: Trigger:1. Guild:Bulwark.
+180,Radiant Bulwark 2,Defense,0,0,3,5,,,0,Trigger:5,Common,Provides 3 defense. Play requirement: Trigger:5. Guild:Bulwark.
+193,Wind Bastion,Defense,0,0,3,4,,,0,Trigger:4,Common,Provides 3 defense. Play requirement: Trigger:4. Guild:Bulwark.
+133,Wind Barrier,Defense,0,0,4,2,,,0,Trigger:2,Common,Provides 4 defense. Play requirement: Trigger:2. Guild:Bulwark.
+191,Infernal Barrier,Defense,0,0,4,3|5,,,0,Trigger:3|5,Common,Provides 4 defense. Play requirement: Trigger:3|5. Guild:Bulwark.
+170,Razor Aegis,Defense,0,0,5,1|4,,,0,Trigger:1|4,Common,Provides 5 defense. Play requirement: Trigger:1|4. Guild:Bulwark.
+210,Verdant Bulwark,Defense,0,0,7,3|5,,,0,Trigger:3|5,Common,Provides 7 defense. Play requirement: Trigger:3|5. Guild:Bulwark.
+149,Wind Barrier 2,Defense,0,0,9,1|4,,,0,Trigger:1|4,Common,Provides 9 defense. Play requirement: Trigger:1|4. Guild:Bulwark.
+174,Infernal Bulwark,Defense,0,0,11,6,,,0,Trigger:6,Common,Provides 11 defense. Play requirement: Trigger:6. Guild:Bulwark.
+127,Solar Bulwark,Defense,0,0,12,1|5,,,0,Trigger:1|5,Common,Provides 12 defense. Play requirement: Trigger:1|5. Guild:Bulwark.
+157,Thunder Shield,Defense,0,0,14,5,,,0,Trigger:5,Common,Provides 14 defense. Play requirement: Trigger:5. Guild:Bulwark.
+11,Glacial Rend,Attack,0,3,0,2,,,0,Trigger:2,Common,Deals 3 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+47,Verdant Jab,Attack,0,4,0,4,,,0,Trigger:4,Common,Deals 4 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+99,Infernal Slash 2,Attack,0,4,0,6,,,0,Trigger:6,Common,Deals 4 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+55,Void Jab,Attack,0,5,0,1,,,0,Trigger:1,Common,Deals 5 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+45,Lunar Barrage 2,Attack,0,7,0,,,Shield,3,,Common,Deals 7 attack damage. Special: Shield. Affects counters: 3. Guild:Vanguard.
+56,Lunar Pierce,Attack,0,7,0,3,,,0,Trigger:3,Common,Deals 7 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+85,Infernal Smash 2,Attack,0,7,0,2,,,0,Trigger:2,Common,Deals 7 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+17,Lunar Strike,Attack,0,8,0,1,,,0,Trigger:1,Common,Deals 8 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+57,Stone Chop,Attack,0,8,0,2,,,0,Trigger:2,Common,Deals 8 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+41,Spectral Strike,Attack,0,9,0,4,,,0,Trigger:4,Common,Deals 9 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+4,Spectral Rend,Attack,0,10,0,3,,,0,Trigger:3,Common,Deals 10 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+31,Crimson Smash,Attack,0,11,0,5,,,0,Trigger:5,Common,Deals 11 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+175,Verdant Shield,Defense,1,0,3,1,,,0,Trigger:1,Common,Provides 3 defense. Play requirement: Trigger:1. Guild:Bulwark.
+201,Gloom Mantle,Defense,1,0,3,4,,,0,Trigger:4,Common,Provides 3 defense. Play requirement: Trigger:4. Guild:Bulwark.
+126,Silent Ward,Defense,1,0,6,1|2,,,0,Trigger:1|2,Common,Provides 6 defense. Play requirement: Trigger:1|2. Guild:Bulwark.
+195,Infernal Ward,Defense,1,0,8,2,,,0,Trigger:2,Common,Provides 8 defense. Play requirement: Trigger:2. Guild:Bulwark.
+137,Glacial Bulwark,Defense,1,0,9,5,,,0,Trigger:5,Common,Provides 9 defense. Play requirement: Trigger:5. Guild:Bulwark.
+166,Radiant Bastion,Defense,1,0,10,4,,,0,Trigger:4,Common,Provides 10 defense. Play requirement: Trigger:4. Guild:Bulwark.
+167,Lunar Shield,Defense,1,0,12,2,,,0,Trigger:2,Common,Provides 12 defense. Play requirement: Trigger:2. Guild:Bulwark.
+134,Iron Bulwark,Defense,1,0,14,1,,,0,Trigger:1,Common,Provides 14 defense. Play requirement: Trigger:1. Guild:Bulwark.
+71,Glacial Barrage 2,Attack,1,2,0,4,,,0,Trigger:4,Common,Deals 2 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+74,Wind Strike,Attack,1,3,0,5,,,0,Trigger:5,Common,Deals 3 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+115,Razor Jab 2,Attack,1,5,0,2,,,0,Trigger:2,Common,Deals 5 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+90,Azure Rend,Attack,1,6,0,1,,,0,Trigger:1,Common,Deals 6 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+94,Silent Smash,Attack,1,7,0,2,,,0,Trigger:2,Common,Deals 7 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+29,Ethereal Slash,Attack,1,8,0,6,,,0,Trigger:6,Common,Deals 8 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+48,Radiant Jab,Attack,1,9,0,6,,,0,Trigger:6,Common,Deals 9 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+100,Solar Cleave 2,Attack,1,9,0,1,,,0,Trigger:1,Common,Deals 9 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+38,Iron Chop,Attack,1,10,0,4,,,0,Trigger:4,Common,Deals 10 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+81,Infernal Smash,Attack,1,11,0,4,,,0,Trigger:4,Common,Deals 11 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+21,Lunar Barrage,Attack,1,12,0,1|2,,,0,Trigger:1|2,Common,Deals 12 attack damage. Play requirement: Trigger:1|2. Guild:Vanguard.
+128,Void Bastion,Defense,2,0,1,4,,,0,Trigger:4,Common,Provides 1 defense. Play requirement: Trigger:4. Guild:Bulwark.
+209,Silent Shield,Defense,2,0,1,4|6,,,0,Trigger:4|6,Common,Provides 1 defense. Play requirement: Trigger:4|6. Guild:Bulwark.
+129,Azure Palisade,Defense,2,0,2,2,,,0,Trigger:2,Common,Provides 2 defense. Play requirement: Trigger:2. Guild:Bulwark.
+123,Ethereal Bulwark,Defense,2,0,3,6,,,0,Trigger:6,Common,Provides 3 defense. Play requirement: Trigger:6. Guild:Bulwark.
+150,Solar Bulwark 3,Defense,2,0,3,1|5,,,0,Trigger:1|5,Common,Provides 3 defense. Play requirement: Trigger:1|5. Guild:Bulwark.
+155,Iron Ward,Defense,2,0,3,2,,,0,Trigger:2,Common,Provides 3 defense. Play requirement: Trigger:2. Guild:Bulwark.
+178,Stone Barrier,Defense,2,0,3,2|5,,,0,Trigger:2|5,Common,Provides 3 defense. Play requirement: Trigger:2|5. Guild:Bulwark.
+194,Iron Bulwark 3,Defense,2,0,5,3|6,,,0,Trigger:3|6,Common,Provides 5 defense. Play requirement: Trigger:3|6. Guild:Bulwark.
+190,Razor Mantle,Defense,2,0,6,2,,,0,Trigger:2,Common,Provides 6 defense. Play requirement: Trigger:2. Guild:Bulwark.
+124,Wind Guard,Defense,2,0,7,4|6,,,0,Trigger:4|6,Common,Provides 7 defense. Play requirement: Trigger:4|6. Guild:Bulwark.
+187,Thunder Aegis 2,Defense,2,0,9,2|4,,,0,Trigger:2|4,Common,Provides 9 defense. Play requirement: Trigger:2|4. Guild:Bulwark.
+202,Wind Guard 3,Defense,2,0,10,3,,,0,Trigger:3,Common,Provides 10 defense. Play requirement: Trigger:3. Guild:Bulwark.
+142,Thunder Aegis,Defense,2,0,11,6,,,0,Trigger:6,Common,Provides 11 defense. Play requirement: Trigger:6. Guild:Bulwark.
+169,Lunar Ward,Defense,2,0,14,3|5,,,0,Trigger:3|5,Common,Provides 14 defense. Play requirement: Trigger:3|5. Guild:Bulwark.
+24,Crimson Rend,Attack,2,3,0,5,,,0,Trigger:5,Common,Deals 3 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+79,Spectral Smash,Attack,2,4,0,6,,,0,Trigger:6,Common,Deals 4 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+93,Spectral Chop,Attack,2,4,0,6,,,0,Trigger:6,Common,Deals 4 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+10,Spectral Jab,Attack,2,5,0,2,,,0,Trigger:2,Common,Deals 5 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+86,Gloom Chop,Attack,2,6,0,5,,,0,Trigger:5,Common,Deals 6 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+77,Ethereal Cleave,Attack,2,7,0,1|2,,,0,Trigger:1|2,Common,Deals 7 attack damage. Play requirement: Trigger:1|2. Guild:Vanguard.
+113,Solar Smash,Attack,2,7,0,1,,,0,Trigger:1,Common,Deals 7 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+82,Obsidian Smash,Attack,2,8,0,1,,,0,Trigger:1,Common,Deals 8 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+107,Stone Strike 3,Attack,2,10,0,2,,,0,Trigger:2,Common,Deals 10 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+118,Razor Rend,Attack,2,10,0,1,,,0,Trigger:1,Common,Deals 10 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+14,Razor Jab,Attack,2,12,0,1|2,,,0,Trigger:1|2,Common,Deals 12 attack damage. Play requirement: Trigger:1|2. Guild:Vanguard.
+61,Radiant Smash,Attack,2,12,0,4,,,0,Trigger:4,Common,Deals 12 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+111,Obsidian Smash 2,Attack,2,12,0,2,,,0,Trigger:2,Common,Deals 12 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+171,Silent Bulwark,Defense,3,0,1,1|4,,,0,Trigger:1|4,Common,Provides 1 defense. Play requirement: Trigger:1|4. Guild:Bulwark.
+143,Obsidian Barrier,Defense,3,0,3,6,,,0,Trigger:6,Common,Provides 3 defense. Play requirement: Trigger:6. Guild:Bulwark.
+144,Radiant Aegis,Defense,3,0,3,4|6,,,0,Trigger:4|6,Common,Provides 3 defense. Play requirement: Trigger:4|6. Guild:Bulwark.
+179,Solar Barrier,Defense,3,0,4,3|5,,,0,Trigger:3|5,Common,Provides 4 defense. Play requirement: Trigger:3|5. Guild:Bulwark.
+172,Thunder Bulwark,Defense,3,0,6,3,,,0,Trigger:3,Common,Provides 6 defense. Play requirement: Trigger:3. Guild:Bulwark.
+138,Solar Bastion,Defense,3,0,7,4,,,0,Trigger:4,Common,Provides 7 defense. Play requirement: Trigger:4. Guild:Bulwark.
+205,Razor Ward,Defense,3,0,9,3,,,0,Trigger:3,Common,Provides 9 defense. Play requirement: Trigger:3. Guild:Bulwark.
+146,Wind Guard 2,Defense,3,0,10,5,,,0,Trigger:5,Common,Provides 10 defense. Play requirement: Trigger:5. Guild:Bulwark.
+176,Gloom Ward,Defense,3,0,13,2,,,0,Trigger:2,Common,Provides 13 defense. Play requirement: Trigger:2. Guild:Bulwark.
+207,Solar Bulwark 4,Defense,3,0,13,4,,,0,Trigger:4,Common,Provides 13 defense. Play requirement: Trigger:4. Guild:Bulwark.
+58,Spectral Slash,Attack,3,2,0,4,,,0,Trigger:4,Common,Deals 2 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+32,Glacial Barrage,Attack,3,3,0,1|4,,,0,Trigger:1|4,Common,Deals 3 attack damage. Play requirement: Trigger:1|4. Guild:Vanguard.
+110,Stone Slash 2,Attack,3,3,0,1,,,0,Trigger:1,Common,Deals 3 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+36,Solar Barrage,Attack,3,5,0,1,,,0,Trigger:1,Common,Deals 5 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+89,Razor Chop,Attack,3,5,0,5,,,0,Trigger:5,Common,Deals 5 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+106,Azure Barrage,Attack,3,5,0,3,,,0,Trigger:3,Common,Deals 5 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+83,Azure Slash,Attack,3,6,0,5,,,0,Trigger:5,Common,Deals 6 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+119,Verdant Bolt,Attack,3,6,0,1|2,,,0,Trigger:1|2,Common,Deals 6 attack damage. Play requirement: Trigger:1|2. Guild:Vanguard.
+46,Verdant Strike,Attack,3,9,0,6,,,0,Trigger:6,Common,Deals 9 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+49,Razor Bolt,Attack,3,9,0,2,,,0,Trigger:2,Common,Deals 9 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+95,Wind Chop 2,Attack,3,9,0,2,,,0,Trigger:2,Common,Deals 9 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+22,Glacial Strike,Attack,3,11,0,1,,,0,Trigger:1,Common,Deals 11 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+12,Gloom Smash,Attack,3,12,0,3|5,,,0,Trigger:3|5,Common,Deals 12 attack damage. Play requirement: Trigger:3|5. Guild:Vanguard.
+35,Azure Jab 2,Attack,3,12,0,4,,,0,Trigger:4,Common,Deals 12 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+116,Lunar Barrage 3,Attack,3,12,0,1|5,,,0,Trigger:1|5,Common,Deals 12 attack damage. Play requirement: Trigger:1|5. Guild:Vanguard.
+251,Obsidian Blast,Spell,0,0,1,5,1.0,,0,Trigger:5,Common,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Provides 1 defense. Guild:Foundry.
+267,Lunar Surge,Spell,0,2,3,2|3,1.0,,0,Trigger:2|3,Common,Playable only when a die roll matches trigger(s): 2|3. Lasts 1 round(s). Deals 2 attack damage. Provides 3 defense. Guild:Foundry.
+198,Obsidian Bulwark,Defense,4,0,1,3,,,0,Trigger:3,Common,Provides 1 defense. Play requirement: Trigger:3. Guild:Bulwark.
+183,Razor Aegis 2,Defense,4,0,3,2|5,,,0,Trigger:2|5,Common,Provides 3 defense. Play requirement: Trigger:2|5. Guild:Bulwark.
+184,Thunder Mantle 2,Defense,4,0,7,6,,,0,Trigger:6,Common,Provides 7 defense. Play requirement: Trigger:6. Guild:Bulwark.
+186,Ethereal Guard,Defense,4,0,8,4|5,,,0,Trigger:4|5,Common,Provides 8 defense. Play requirement: Trigger:4|5. Guild:Bulwark.
+139,Glacial Barrier,Defense,4,0,9,2|4,,,0,Trigger:2|4,Common,Provides 9 defense. Play requirement: Trigger:2|4. Guild:Bulwark.
+141,Solar Bulwark 2,Defense,4,0,11,1,,,0,Trigger:1,Common,Provides 11 defense. Play requirement: Trigger:1. Guild:Bulwark.
+181,Verdant Bastion,Defense,4,0,11,6,,,0,Trigger:6,Common,Provides 11 defense. Play requirement: Trigger:6. Guild:Bulwark.
+26,Stone Strike,Attack,4,2,0,3,,,0,Trigger:3,Common,Deals 2 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+65,Razor Pierce,Attack,4,2,0,5,,,0,Trigger:5,Common,Deals 2 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+40,Stone Strike 2,Attack,4,3,0,3|4,,,0,Trigger:3|4,Common,Deals 3 attack damage. Play requirement: Trigger:3|4. Guild:Vanguard.
+1,Stone Slash,Attack,4,6,0,3,,,0,Trigger:3,Common,Deals 6 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+8,Razor Strike,Attack,4,6,0,1,,,0,Trigger:1,Common,Deals 6 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+54,Stone Cleave,Attack,4,6,0,4|6,,,0,Trigger:4|6,Common,Deals 6 attack damage. Play requirement: Trigger:4|6. Guild:Vanguard.
+5,Solar Rend,Attack,4,9,0,5,,,0,Trigger:5,Uncommon,Deals 9 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+80,Infernal Slash,Attack,4,9,0,2,,,0,Trigger:2,Uncommon,Deals 9 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+108,Mire Jab,Attack,4,9,0,3,,,0,Trigger:3,Uncommon,Deals 9 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+9,Solar Cleave,Attack,4,11,0,4,,,0,Trigger:4,Uncommon,Deals 11 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+42,Silent Barrage,Attack,4,12,0,6,,,0,Trigger:6,Uncommon,Deals 12 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+281,Lunar Charm,Spell,1,2,3,2,1.0,,0,Trigger:2,Uncommon,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 2 attack damage. Provides 3 defense. Guild:Foundry.
+300,Solar Rift,Spell,1,4,0,3|4,1.0,,0,Trigger:3|4,Uncommon,Playable only when a die roll matches trigger(s): 3|4. Lasts 1 round(s). Deals 4 attack damage. Guild:Foundry.
+66,Mire Smash,Attack,0,6,0,,,DoubleHit,2,,Uncommon,Deals 6 attack damage. Special: DoubleHit. Affects counters: 2. Guild:Vanguard.
+153,Ethereal Mantle,Defense,5,0,3,4,,,0,Trigger:4,Uncommon,Provides 3 defense. Play requirement: Trigger:4. Guild:Bulwark.
+156,Verdant Guard,Defense,5,0,7,4,,,0,Trigger:4,Uncommon,Provides 7 defense. Play requirement: Trigger:4. Guild:Bulwark.
+140,Mire Bulwark,Defense,5,0,13,4,,,0,Trigger:4,Uncommon,Provides 13 defense. Play requirement: Trigger:4. Guild:Bulwark.
+18,Radiant Burn Rend,Attack,5,2,0,,,Burn,4,,Uncommon,Deals 2 attack damage. Special: Burn. Affects counters: 4. Guild:Vanguard.
+19,Gloom Cleave,Attack,5,3,0,4,,,0,Trigger:4,Uncommon,Deals 3 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+20,Azure Jab,Attack,5,3,0,2|3,,,0,Trigger:2|3,Uncommon,Deals 3 attack damage. Play requirement: Trigger:2|3. Guild:Vanguard.
+53,Azure Jab 3,Attack,5,3,0,5,,,0,Trigger:5,Uncommon,Deals 3 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+33,Radiant Pierce,Attack,5,4,0,6,,,0,Trigger:6,Uncommon,Deals 4 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+23,Lunar Smash,Attack,5,6,0,6,,,0,Trigger:6,Uncommon,Deals 6 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+75,Lunar Chop 2,Attack,5,6,0,2,,,0,Trigger:2,Uncommon,Deals 6 attack damage. Play requirement: Trigger:2. Guild:Vanguard.
+84,Glacial Bolt,Attack,5,6,0,1|5,,,0,Trigger:1|5,Uncommon,Deals 6 attack damage. Play requirement: Trigger:1|5. Guild:Vanguard.
+103,Glacial Rend 2,Attack,5,7,0,3,,,0,Trigger:3,Uncommon,Deals 7 attack damage. Play requirement: Trigger:3. Guild:Vanguard.
+112,Spectral Cleave,Attack,5,7,0,5,,,0,Trigger:5,Uncommon,Deals 7 attack damage. Play requirement: Trigger:5. Guild:Vanguard.
+30,Silent Slash,Attack,5,8,0,1,,,0,Trigger:1,Uncommon,Deals 8 attack damage. Play requirement: Trigger:1. Guild:Vanguard.
+120,Obsidian Bolt 2,Attack,5,9,0,6,,,0,Trigger:6,Uncommon,Deals 9 attack damage. Play requirement: Trigger:6. Guild:Vanguard.
+44,Ethereal Rend,Attack,5,11,0,4,,,0,Trigger:4,Uncommon,Deals 11 attack damage. Play requirement: Trigger:4. Guild:Vanguard.
+279,Lunar Flare,Spell,2,4,1,1|5,1.0,,0,Trigger:1|5,Uncommon,Playable only when a die roll matches trigger(s): 1|5. Lasts 1 round(s). Deals 4 attack damage. Provides 1 defense. Guild:Foundry.
+277,Radiant Blast,Spell,2,5,4,3|5,1.0,,0,Trigger:3|5,Uncommon,Playable only when a die roll matches trigger(s): 3|5. Lasts 1 round(s). Deals 5 attack damage. Provides 4 defense. Guild:Foundry.
+216,Azure Blast,Spell,3,4,4,4,1.0,,0,Trigger:4,Uncommon,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 4 attack damage. Provides 4 defense. Guild:Foundry.
+249,Gloom Glyph,Spell,3,6,1,1|6,1.0,,0,Trigger:1|6,Uncommon,Playable only when a die roll matches trigger(s): 1|6. Lasts 1 round(s). Deals 6 attack damage. Provides 1 defense. Guild:Foundry.
+152,Thunder Splash Mantle,Defense,2,0,13,,,Splash,2,,Uncommon,Provides 13 defense. Special: Splash. Affects counters: 2. Guild:Bulwark.
+182,Azure Freeze Guard,Defense,5,0,6,,,Freeze,1,,Uncommon,Provides 6 defense. Special: Freeze. Affects counters: 1. Guild:Bulwark.
+188,Lunar Bulwark,Defense,3,0,5,,,Counterattack,0,,Uncommon,Provides 5 defense. Special: Counterattack. Guild:Bulwark.
+6,Wind Slash,Attack,1,7,0,6,,DrainMana,0,Trigger:6,Uncommon,Deals 7 attack damage. Special: DrainMana. Play requirement: Trigger:6. Guild:Vanguard.
+240,Wind Pulse,Spell,5,2,3,4,1.0,,0,Trigger:4,Uncommon,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 2 attack damage. Provides 3 defense. Guild:Foundry.
+214,Spectral Pulse,Spell,5,4,2,3,1.0,,0,Trigger:3,Uncommon,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Deals 4 attack damage. Provides 2 defense. Guild:Foundry.
+228,Glacial Flare,Spell,5,5,2,1|6,1.0,,0,Trigger:1|6,Uncommon,Playable only when a die roll matches trigger(s): 1|6. Lasts 1 round(s). Deals 5 attack damage. Provides 2 defense. Guild:Foundry.
+263,Silent Rift,Spell,6,0,1,2|3,1.0,,0,Trigger:2|3,Uncommon,Playable only when a die roll matches trigger(s): 2|3. Lasts 1 round(s). Provides 1 defense. Guild:Foundry.
+287,Radiant Flare,Spell,6,1,3,4,1.0,,0,Trigger:4,Uncommon,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 1 attack damage. Provides 3 defense. Guild:Foundry.
+237,Thunder Charm,Spell,6,5,1,5,1.0,,0,Trigger:5,Uncommon,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 5 attack damage. Provides 1 defense. Guild:Foundry.
+269,Thunder Blast,Spell,6,5,1,5,1.0,,0,Trigger:5,Uncommon,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 5 attack damage. Provides 1 defense. Guild:Foundry.
+268,Stone Blast,Spell,6,5,3,2,1.0,,0,Trigger:2,Uncommon,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 5 attack damage. Provides 3 defense. Guild:Foundry.
+293,Razor Glyph,Spell,6,6,1,3,1.0,,0,Trigger:3,Uncommon,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Deals 6 attack damage. Provides 1 defense. Guild:Foundry.
+15,Iron Lifesteal Barrage,Attack,0,2,0,6,,Lifesteal,0,Trigger:6,Uncommon,Deals 2 attack damage. Special: Lifesteal. Play requirement: Trigger:6. Guild:Vanguard.
+162,Thunder Mantle,Defense,1,0,3,6,,Stun,0,Trigger:6,Uncommon,Provides 3 defense. Special: Stun. Play requirement: Trigger:6. Guild:Bulwark.
+206,Lunar Freeze Mantle,Defense,1,0,14,4,,Freeze,0,Trigger:4,Uncommon,Provides 14 defense. Special: Freeze. Play requirement: Trigger:4. Guild:Bulwark.
+87,Stone Smash,Attack,2,6,0,5,,Freeze,0,Trigger:5,Uncommon,Deals 6 attack damage. Special: Freeze. Play requirement: Trigger:5. Guild:Vanguard.
+147,Wind Palisade,Defense,0,0,3,1|3,,Poison,1,Trigger:1|3,Uncommon,Provides 3 defense. Special: Poison. Affects counters: 1. Play requirement: Trigger:1|3. Guild:Bulwark.
+122,Crimson Aegis,Defense,0,0,6,6,,Poison,4,Trigger:6,Uncommon,Provides 6 defense. Special: Poison. Affects counters: 4. Play requirement: Trigger:6. Guild:Bulwark.
+121,Infernal Guard,Defense,0,0,9,1,,Burn,4,Trigger:1,Uncommon,Provides 9 defense. Special: Burn. Affects counters: 4. Play requirement: Trigger:1. Guild:Bulwark.
+185,Wind Bulwark 2,Defense,0,0,10,1|5,,Burn,4,Trigger:1|5,Rare,Provides 10 defense. Special: Burn. Affects counters: 4. Play requirement: Trigger:1|5. Guild:Bulwark.
+160,Solar Palisade,Defense,0,0,14,3,,DoubleHit,0,Trigger:3,Rare,Provides 14 defense. Special: DoubleHit. Play requirement: Trigger:3. Guild:Bulwark.
+51,Silent Chop,Attack,0,9,0,5,,DoubleHit,0,Trigger:5,Rare,Deals 9 attack damage. Special: DoubleHit. Play requirement: Trigger:5. Guild:Vanguard.
+62,Ethereal Jab,Attack,5,7,0,,,Nullify,1,,Rare,Deals 7 attack damage. Special: Nullify. Affects counters: 1. Guild:Vanguard.
+52,Crimson Shield Rend,Attack,1,4,0,3|4,,Shield,3,Trigger:3|4,Rare,Deals 4 attack damage. Special: Shield. Affects counters: 3. Play requirement: Trigger:3|4. Guild:Vanguard.
+73,Obsidian Bolt,Attack,1,5,0,4,,Burn,1,Trigger:4,Rare,Deals 5 attack damage. Special: Burn. Affects counters: 1. Play requirement: Trigger:4. Guild:Vanguard.
+196,Radiant Bulwark 3,Defense,4,0,8,5|6,,Lifesteal,0,Trigger:5|6,Rare,Provides 8 defense. Special: Lifesteal. Play requirement: Trigger:5|6. Guild:Bulwark.
+135,Iron Burn Shield,Defense,2,0,5,4,,Burn,2,Trigger:4,Rare,Provides 5 defense. Special: Burn. Affects counters: 2. Play requirement: Trigger:4. Guild:Bulwark.
+102,Mire DrainMana Bolt,Attack,2,5,0,6,,DrainMana,1,Trigger:6,Rare,Deals 5 attack damage. Special: DrainMana. Affects counters: 1. Play requirement: Trigger:6. Guild:Vanguard.
+286,Solar Glyph 2,Spell,1,0,0,4,1.0,Stun,0,Trigger:4,Rare,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Special: Stun. Guild:Foundry.
+294,Ethereal Charm 2,Spell,1,4,3,2|6,1.0,Lifesteal,0,Trigger:2|6,Rare,Playable only when a die roll matches trigger(s): 2|6. Lasts 1 round(s). Deals 4 attack damage. Provides 3 defense. Special: Lifesteal. Guild:Foundry.
+284,Lunar Blast,Spell,1,5,2,1,1.0,Lifesteal,0,Trigger:1,Rare,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 5 attack damage. Provides 2 defense. Special: Lifesteal. Guild:Foundry.
+274,Thunder Glyph,Spell,1,5,3,1,1.0,Lifesteal,0,Trigger:1,Rare,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 5 attack damage. Provides 3 defense. Special: Lifesteal. Guild:Foundry.
+189,Azure Bulwark,Defense,0,0,4,6,,Barrier,3,Trigger:6,Rare,Provides 4 defense. Special: Barrier. Affects counters: 3. Play requirement: Trigger:6. Guild:Bulwark.
+131,Lunar Pierce Mantle,Defense,0,0,11,4,,Pierce,1,Trigger:4,Rare,Provides 11 defense. Special: Pierce. Affects counters: 1. Play requirement: Trigger:4. Guild:Bulwark.
+154,Mire Freeze Shield,Defense,0,0,13,5,,Freeze,1,Trigger:5,Rare,Provides 13 defense. Special: Freeze. Affects counters: 1. Play requirement: Trigger:5. Guild:Bulwark.
+148,Razor Pierce Guard,Defense,0,0,14,3|6,,Pierce,1,Trigger:3|6,Rare,Provides 14 defense. Special: Pierce. Affects counters: 1. Play requirement: Trigger:3|6. Guild:Bulwark.
+96,Azure Nullify Chop,Attack,0,12,0,1|3,,Nullify,0,Trigger:1|3,Rare,Deals 12 attack damage. Special: Nullify. Play requirement: Trigger:1|3. Guild:Vanguard.
+161,Gloom Shield,Defense,3,0,2,5,,DrainMana,1,Trigger:5,Rare,Provides 2 defense. Special: DrainMana. Affects counters: 1. Play requirement: Trigger:5. Guild:Bulwark.
+164,Obsidian Burn Shield,Defense,3,0,7,4,,Burn,1,Trigger:4,Rare,Provides 7 defense. Special: Burn. Affects counters: 1. Play requirement: Trigger:4. Guild:Bulwark.
+27,Wind Jab,Attack,3,2,0,4|5,,Regen,1,Trigger:4|5,Rare,Deals 2 attack damage. Special: Regen. Affects counters: 1. Play requirement: Trigger:4|5. Guild:Vanguard.
+104,Razor Regen Rend,Attack,3,8,0,1,,Regen,1,Trigger:1,Rare,Deals 8 attack damage. Special: Regen. Affects counters: 1. Play requirement: Trigger:1. Guild:Vanguard.
+297,Silent Burst 2,Spell,2,0,2,1,1.0,Stun,0,Trigger:1,Rare,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Provides 2 defense. Special: Stun. Guild:Foundry.
+273,Obsidian Hex,Spell,2,0,5,5,1.0,Stun,0,Trigger:5,Rare,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Provides 5 defense. Special: Stun. Guild:Foundry.
+220,Wind Rift,Spell,2,3,0,5,1.0,Lifesteal,0,Trigger:5,Epic,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 3 attack damage. Special: Lifesteal. Guild:Foundry.
+261,Silent Surge,Spell,0,3,3,2,1.0,DrainMana,1,Trigger:2,Epic,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 3 attack damage. Provides 3 defense. Special: DrainMana. Affects counters: 1. Guild:Foundry.
+208,Iron Palisade,Defense,4,0,3,5,,Shield,3,Trigger:5,Epic,Provides 3 defense. Special: Shield. Affects counters: 3. Play requirement: Trigger:5. Guild:Bulwark.
+177,Mire Bulwark 2,Defense,4,0,6,3,,Poison,1,Trigger:3,Epic,Provides 6 defense. Special: Poison. Affects counters: 1. Play requirement: Trigger:3. Guild:Bulwark.
+25,Iron Regen Jab,Attack,4,7,0,5|6,,Regen,2,Trigger:5|6,Epic,Deals 7 attack damage. Special: Regen. Affects counters: 2. Play requirement: Trigger:5|6. Guild:Vanguard.
+290,Wind Lifesteal Burst,Spell,3,4,1,6,1.0,Lifesteal,0,Trigger:6,Epic,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Deals 4 attack damage. Provides 1 defense. Special: Lifesteal. Guild:Foundry.
+217,Crimson Hex,Spell,3,5,0,5,1.0,Lifesteal,0,Trigger:5,Epic,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 5 attack damage. Special: Lifesteal. Guild:Foundry.
+292,Radiant DrainMana Flare,Spell,1,5,3,5,1.0,DrainMana,1,Trigger:5,Epic,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 5 attack damage. Provides 3 defense. Special: DrainMana. Affects counters: 1. Guild:Foundry.
+241,Thunder DoubleHit Glyph,Spell,1,8,0,1|5,1.0,DoubleHit,0,Trigger:1|5,Epic,Playable only when a die roll matches trigger(s): 1|5. Lasts 1 round(s). Deals 8 attack damage. Special: DoubleHit. Guild:Foundry.
+145,Iron Reflect Bastion,Defense,0,0,5,2,,Reflect,2,Trigger:2,Epic,Provides 5 defense. Special: Reflect. Affects counters: 2. Play requirement: Trigger:2. Guild:Bulwark.
+72,Solar Reflect Bolt,Attack,0,3,0,3,,Reflect,1,Trigger:3,Epic,Deals 3 attack damage. Special: Reflect. Affects counters: 1. Play requirement: Trigger:3. Guild:Vanguard.
+63,Wind Pierce,Attack,0,12,0,2,,Reflect,1,Trigger:2,Epic,Deals 12 attack damage. Special: Reflect. Affects counters: 1. Play requirement: Trigger:2. Guild:Vanguard.
+136,Ethereal Poison Bulwark,Defense,5,0,1,3|6,,Poison,2,Trigger:3|6,Epic,Provides 1 defense. Special: Poison. Affects counters: 2. Play requirement: Trigger:3|6. Guild:Bulwark.
+204,Void Bulwark,Defense,5,0,10,5,,Burn,1,Trigger:5,Epic,Provides 10 defense. Special: Burn. Affects counters: 1. Play requirement: Trigger:5. Guild:Bulwark.
+34,Glacial Burn Slash,Attack,5,5,0,3,,Burn,3,Trigger:3,Epic,Deals 5 attack damage. Special: Burn. Affects counters: 3. Play requirement: Trigger:3. Guild:Vanguard.
+230,Solar Pierce Rift,Spell,4,4,0,2|3,1.0,Pierce,0,Trigger:2|3,Epic,Playable only when a die roll matches trigger(s): 2|3. Lasts 1 round(s). Deals 4 attack damage. Special: Pierce. Guild:Foundry.
+173,Iron Bulwark 2,Defense,3,0,13,2,,Stun,1,Trigger:2,Epic,Provides 13 defense. Special: Stun. Affects counters: 1. Play requirement: Trigger:2. Guild:Bulwark.
+97,Mire Pierce,Attack,3,7,0,6,,Freeze,1,Trigger:6,Epic,Deals 7 attack damage. Special: Freeze. Affects counters: 1. Play requirement: Trigger:6. Guild:Vanguard.
+13,Lunar Chop,Attack,3,9,0,6,,Lifesteal,1,Trigger:6,Epic,Deals 9 attack damage. Special: Lifesteal. Affects counters: 1. Play requirement: Trigger:6. Guild:Vanguard.
+78,Void Barrage,Attack,3,9,0,4,,Pierce,1,Trigger:4,Epic,Deals 9 attack damage. Special: Pierce. Affects counters: 1. Play requirement: Trigger:4. Guild:Vanguard.
+224,Razor Blast,Spell,2,1,0,3,1.0,Burn,4,Trigger:3,Epic,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Deals 1 attack damage. Special: Burn. Affects counters: 4. Guild:Foundry.
+245,Obsidian Charm,Spell,2,2,3,5,1.0,DrainMana,1,Trigger:5,Legendary,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 2 attack damage. Provides 3 defense. Special: DrainMana. Affects counters: 1. Guild:Foundry.
+192,Obsidian Shield,Defense,1,0,14,4|6,,Counterattack,2,Trigger:4|6,Legendary,Provides 14 defense. Special: Counterattack. Affects counters: 2. Play requirement: Trigger:4|6. Guild:Bulwark.
+109,Radiant Barrage,Attack,1,5,0,6,,DoubleHit,2,Trigger:6,Legendary,Deals 5 attack damage. Special: DoubleHit. Affects counters: 2. Play requirement: Trigger:6. Guild:Vanguard.
+270,Lunar Barrier Pulse,Spell,0,0,4,5,1.0,Barrier,3,Trigger:5,Legendary,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Provides 4 defense. Special: Barrier. Affects counters: 3. Guild:Foundry.
+213,Void Charm,Spell,0,0,5,4|5,1.0,Barrier,3,Trigger:4|5,Legendary,Playable only when a die roll matches trigger(s): 4|5. Lasts 1 round(s). Provides 5 defense. Special: Barrier. Affects counters: 3. Guild:Foundry.
+275,Iron Lifesteal Rift,Spell,0,5,1,2,1.0,Lifesteal,2,Trigger:2,Legendary,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 5 attack damage. Provides 1 defense. Special: Lifesteal. Affects counters: 2. Guild:Foundry.
+233,Solar Pulse,Spell,5,0,1,3,1.0,Stun,0,Trigger:3,Legendary,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Provides 1 defense. Special: Stun. Guild:Foundry.
+226,Solar Charm,Spell,5,0,3,2,1.0,Freeze,0,Trigger:2,Legendary,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Provides 3 defense. Special: Freeze. Guild:Foundry.
+223,Infernal Surge,Spell,5,0,4,5,1.0,Stun,0,Trigger:5,Legendary,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Provides 4 defense. Special: Stun. Guild:Foundry.
+70,Radiant Barrier Slash,Attack,4,2,0,2,,Barrier,1,Trigger:2,Legendary,Deals 2 attack damage. Special: Barrier. Affects counters: 1. Play requirement: Trigger:2. Guild:Vanguard.
+91,Razor Chop 2,Attack,4,2,0,1|6,,Stun,1,Trigger:1|6,Legendary,Deals 2 attack damage. Special: Stun. Affects counters: 1. Play requirement: Trigger:1|6. Guild:Vanguard.
+28,Thunder Rend,Attack,4,9,0,1,,Nullify,0,Trigger:1,Legendary,Deals 9 attack damage. Special: Nullify. Play requirement: Trigger:1. Guild:Vanguard.
+243,Mire Shield Rite,Spell,3,0,3,2|5,1.0,Shield,2,Trigger:2|5,Legendary,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Provides 3 defense. Special: Shield. Affects counters: 2. Guild:Foundry.
+235,Infernal Rite,Spell,3,1,4,1,1.0,Regen,3,Trigger:1,Legendary,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 1 attack damage. Provides 4 defense. Special: Regen. Affects counters: 3. Guild:Foundry.
+255,Infernal Burst,Spell,3,5,2,1,1.0,Regen,1,Trigger:1,Legendary,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 5 attack damage. Provides 2 defense. Special: Regen. Affects counters: 1. Guild:Foundry.
+159,Gloom Counterattack Shield,Defense,2,0,1,6,,Counterattack,2,Trigger:6,Legendary,Provides 1 defense. Special: Counterattack. Affects counters: 2. Play requirement: Trigger:6. Guild:Bulwark.
+151,Glacial Shield,Defense,2,0,5,2,,DoubleHit,1,Trigger:2,Legendary,Provides 5 defense. Special: DoubleHit. Affects counters: 1. Play requirement: Trigger:2. Guild:Bulwark.
+215,Spectral Barrier Pulse,Spell,1,0,3,2|4,1.0,Barrier,3,Trigger:2|4,Legendary,Playable only when a die roll matches trigger(s): 2|4. Lasts 1 round(s). Provides 3 defense. Special: Barrier. Affects counters: 3. Guild:Foundry.
+248,Crimson Blast,Spell,1,0,3,2|3,1.0,Barrier,2,Trigger:2|3,Legendary,Playable only when a die roll matches trigger(s): 2|3. Lasts 1 round(s). Provides 3 defense. Special: Barrier. Affects counters: 2. Guild:Foundry.
+250,Verdant Stun Rift,Spell,1,0,4,2|4,1.0,Stun,1,Trigger:2|4,Legendary,Playable only when a die roll matches trigger(s): 2|4. Lasts 1 round(s). Provides 4 defense. Special: Stun. Affects counters: 1. Guild:Foundry.
+298,Stone Rift,Spell,1,0,5,3,1.0,Nullify,0,Trigger:3,Legendary,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Provides 5 defense. Special: Nullify. Guild:Foundry.
+265,Void Pulse,Spell,1,0,6,1|4,1.0,Stun,1,Trigger:1|4,Legendary,Playable only when a die roll matches trigger(s): 1|4. Lasts 1 round(s). Provides 6 defense. Special: Stun. Affects counters: 1. Guild:Foundry.
+211,Solar Glyph,Spell,1,5,0,5,1.0,Pierce,2,Trigger:5,Legendary,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 5 attack damage. Special: Pierce. Affects counters: 2. Guild:Foundry.
+132,Azure Barrier,Defense,5,0,10,6,,Nullify,0,Trigger:6,Legendary,Provides 10 defense. Special: Nullify. Play requirement: Trigger:6. Guild:Bulwark.
+67,Stone Freeze Strike,Attack,5,4,0,4|6,,Freeze,1,Trigger:4|6,Ultra,Deals 4 attack damage. Special: Freeze. Affects counters: 1. Play requirement: Trigger:4|6. Guild:Vanguard.
+212,Azure Charm,Spell,4,0,0,2|5,1.0,Regen,1,Trigger:2|5,Ultra,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Special: Regen. Affects counters: 1. Guild:Foundry.
+299,Iron Hex,Spell,4,1,0,6,1.0,Regen,2,Trigger:6,Ultra,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Deals 1 attack damage. Special: Regen. Affects counters: 2. Guild:Foundry.
+219,Crimson Glyph,Spell,4,3,0,4,1.0,DrainMana,1,Trigger:4,Ultra,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 3 attack damage. Special: DrainMana. Affects counters: 1. Guild:Foundry.
+168,Lunar Shield 2,Defense,3,0,7,4,,Counterattack,0,Trigger:4,Ultra,Provides 7 defense. Special: Counterattack. Play requirement: Trigger:4. Guild:Bulwark.
+130,Wind DoubleHit Shield,Defense,3,0,8,3,,DoubleHit,2,Trigger:3,Ultra,Provides 8 defense. Special: DoubleHit. Affects counters: 2. Play requirement: Trigger:3. Guild:Bulwark.
+105,Silent Chop 2,Attack,3,5,0,4,,DoubleHit,2,Trigger:4,Ultra,Deals 5 attack damage. Special: DoubleHit. Affects counters: 2. Play requirement: Trigger:4. Guild:Vanguard.
+227,Thunder Rite,Spell,2,0,1,2|5,1.0,Stun,1,Trigger:2|5,Ultra,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Provides 1 defense. Special: Stun. Affects counters: 1. Guild:Foundry.
+229,Azure Burst,Spell,2,0,1,2|3,1.0,Stun,1,Trigger:2|3,Ultra,Playable only when a die roll matches trigger(s): 2|3. Lasts 1 round(s). Provides 1 defense. Special: Stun. Affects counters: 1. Guild:Foundry.
+252,Void Charm 2,Spell,2,0,3,3|6,1.0,Stun,1,Trigger:3|6,Ultra,Playable only when a die roll matches trigger(s): 3|6. Lasts 1 round(s). Provides 3 defense. Special: Stun. Affects counters: 1. Guild:Foundry.
+266,Lunar Burst 2,Spell,2,2,0,5,1.0,Lifesteal,2,Trigger:5,Ultra,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 2 attack damage. Special: Lifesteal. Affects counters: 2. Guild:Foundry.
+288,Thunder Lifesteal Burst,Spell,2,3,3,1,1.0,Lifesteal,2,Trigger:1,Ultra,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 3 attack damage. Provides 3 defense. Special: Lifesteal. Affects counters: 2. Guild:Foundry.
+234,Crimson Counterattack Charm,Spell,0,0,2,2|4,1.0,Counterattack,2,Trigger:2|4,Ultra,Playable only when a die roll matches trigger(s): 2|4. Lasts 1 round(s). Provides 2 defense. Special: Counterattack. Affects counters: 2. Guild:Foundry.
+222,Silent Hex,Spell,0,2,0,2,1.0,Splash,2,Trigger:2,Ultra,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 2 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+257,Obsidian Splash Blast,Spell,0,3,0,4,1.0,Splash,2,Trigger:4,Ultra,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 3 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+289,Solar DoubleHit Glyph,Spell,0,6,0,4,1.0,DoubleHit,2,Trigger:4,Ultra,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 6 attack damage. Special: DoubleHit. Affects counters: 2. Guild:Foundry.
+231,Azure Blast 2,Spell,5,0,2,1|3,1.0,Shield,3,Trigger:1|3,Ultra,Playable only when a die roll matches trigger(s): 1|3. Lasts 1 round(s). Provides 2 defense. Special: Shield. Affects counters: 3. Guild:Foundry.
+295,Wind Surge,Spell,5,0,4,1|3,1.0,Shield,1,Trigger:1|3,Ultra,Playable only when a die roll matches trigger(s): 1|3. Lasts 1 round(s). Provides 4 defense. Special: Shield. Affects counters: 1. Guild:Foundry.
+244,Infernal Regen Surge,Spell,5,4,3,4,1.0,Regen,3,Trigger:4,Reactor,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 4 attack damage. Provides 3 defense. Special: Regen. Affects counters: 3. Guild:Foundry.
+283,Silent Regen Rite,Spell,5,6,2,6,1.0,Regen,2,Trigger:6,Reactor,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Deals 6 attack damage. Provides 2 defense. Special: Regen. Affects counters: 2. Guild:Foundry.
+262,Gloom Pierce Burst,Spell,3,6,0,4|5,1.0,Pierce,1,Trigger:4|5,Reactor,Playable only when a die roll matches trigger(s): 4|5. Lasts 1 round(s). Deals 6 attack damage. Special: Pierce. Affects counters: 1. Guild:Foundry.
+246,Mire Blast,Spell,1,1,1,1|4,1.0,Reflect,3,Trigger:1|4,Reactor,Playable only when a die roll matches trigger(s): 1|4. Lasts 1 round(s). Deals 1 attack damage. Provides 1 defense. Special: Reflect. Affects counters: 3. Guild:Foundry.
+260,Gloom Blast,Spell,1,2,0,2|5,1.0,DoubleHit,1,Trigger:2|5,Reactor,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Deals 2 attack damage. Special: DoubleHit. Affects counters: 1. Guild:Foundry.
+247,Crimson Charm 2,Spell,1,4,0,6,1.0,DoubleHit,2,Trigger:6,Reactor,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Deals 4 attack damage. Special: DoubleHit. Affects counters: 2. Guild:Foundry.
+253,Gloom Pulse,Spell,1,5,3,3|5,1.0,Reflect,3,Trigger:3|5,Reactor,Playable only when a die roll matches trigger(s): 3|5. Lasts 1 round(s). Deals 5 attack damage. Provides 3 defense. Special: Reflect. Affects counters: 3. Guild:Foundry.
+239,Solar Flare,Spell,1,6,0,1|5,1.0,Counterattack,0,Trigger:1|5,Reactor,Playable only when a die roll matches trigger(s): 1|5. Lasts 1 round(s). Deals 6 attack damage. Special: Counterattack. Guild:Foundry.
+259,Razor Splash Rite,Spell,1,8,0,1,1.0,Splash,2,Trigger:1,Reactor,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 8 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+225,Lunar Burst,Spell,6,0,0,2|4,1.0,Shield,3,Trigger:2|4,Reactor,Playable only when a die roll matches trigger(s): 2|4. Lasts 1 round(s). Special: Shield. Affects counters: 3. Guild:Foundry.
+276,Razor Rift,Spell,6,0,6,6,1.0,Shield,3,Trigger:6,Reactor,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Provides 6 defense. Special: Shield. Affects counters: 3. Guild:Foundry.
+291,Wind Splash Rift,Spell,6,3,0,5,1.0,Splash,0,Trigger:5,Reactor,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Deals 3 attack damage. Special: Splash. Guild:Foundry.
+238,Infernal Blast,Spell,6,5,0,1|2,1.0,DoubleHit,0,Trigger:1|2,Reactor,Playable only when a die roll matches trigger(s): 1|2. Lasts 1 round(s). Deals 5 attack damage. Special: DoubleHit. Guild:Foundry.
+280,Infernal Burst 2,Spell,6,5,1,2,1.0,DrainMana,1,Trigger:2,Reactor,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 5 attack damage. Provides 1 defense. Special: DrainMana. Affects counters: 1. Guild:Foundry.
+218,Crimson Charm,Spell,6,7,0,1,1.0,DoubleHit,0,Trigger:1,Reactor,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 7 attack damage. Special: DoubleHit. Guild:Foundry.
+256,Silent Burst,Spell,6,7,0,1|3,1.0,DoubleHit,0,Trigger:1|3,Foundry,Playable only when a die roll matches trigger(s): 1|3. Lasts 1 round(s). Deals 7 attack damage. Special: DoubleHit. Guild:Foundry.
+254,Stone Hex,Spell,6,8,0,1|5,1.0,Splash,0,Trigger:1|5,Foundry,Playable only when a die roll matches trigger(s): 1|5. Lasts 1 round(s). Deals 8 attack damage. Special: Splash. Guild:Foundry.
+92,Crimson Pierce,Attack,5,6,0,2|5,,Splash,1,Trigger:2|5,Foundry,Deals 6 attack damage. Special: Splash. Affects counters: 1. Play requirement: Trigger:2|5. Guild:Vanguard.
+272,Verdant Rite,Spell,4,4,1,3,1.0,Lifesteal,2,Trigger:3,Foundry,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Deals 4 attack damage. Provides 1 defense. Special: Lifesteal. Affects counters: 2. Guild:Foundry.
+236,Infernal DoubleHit Hex,Spell,2,3,0,2,1.0,DoubleHit,2,Trigger:2,Foundry,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 3 attack damage. Special: DoubleHit. Affects counters: 2. Guild:Foundry.
+285,Ethereal Charm,Spell,5,0,5,6,1.0,Barrier,1,Trigger:6,Foundry,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Provides 5 defense. Special: Barrier. Affects counters: 1. Guild:Foundry.
+258,Solar Blast,Spell,3,1,1,2|5,1.0,Counterattack,2,Trigger:2|5,Foundry,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Deals 1 attack damage. Provides 1 defense. Special: Counterattack. Affects counters: 2. Guild:Foundry.
+296,Gloom Charm,Spell,3,5,0,1|2,1.0,Splash,1,Trigger:1|2,Foundry,Playable only when a die roll matches trigger(s): 1|2. Lasts 1 round(s). Deals 5 attack damage. Special: Splash. Affects counters: 1. Guild:Foundry.
+221,Razor Burst,Spell,4,5,0,3,1.0,Splash,2,Trigger:3,Foundry,Playable only when a die roll matches trigger(s): 3. Lasts 1 round(s). Deals 5 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+232,Obsidian DoubleHit Flare,Spell,4,5,0,4,1.0,DoubleHit,1,Trigger:4,Foundry,Playable only when a die roll matches trigger(s): 4. Lasts 1 round(s). Deals 5 attack damage. Special: DoubleHit. Affects counters: 1. Guild:Foundry.
+264,Radiant Burst,Spell,4,8,0,6,1.0,Splash,2,Trigger:6,Foundry,Playable only when a die roll matches trigger(s): 6. Lasts 1 round(s). Deals 8 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+278,Razor Counterattack Surge,Spell,5,6,0,1,1.0,Counterattack,2,Trigger:1,Foundry,Playable only when a die roll matches trigger(s): 1. Lasts 1 round(s). Deals 6 attack damage. Special: Counterattack. Affects counters: 2. Guild:Foundry.
+282,Glacial Splash Charm,Spell,6,3,0,2,1.0,Splash,2,Trigger:2,Foundry,Playable only when a die roll matches trigger(s): 2. Lasts 1 round(s). Deals 3 attack damage. Special: Splash. Affects counters: 2. Guild:Foundry.
+271,Spectral Rift,Spell,6,5,0,2|5,1.0,Splash,1,Trigger:2|5,Foundry,Playable only when a die roll matches trigger(s): 2|5. Lasts 1 round(s). Deals 5 attack damage. Special: Splash. Affects counters: 1. Guild:Foundry.
+242,Silent Glyph,Spell,4,0,1,5,1.0,Nullify,1,Trigger:5,Foundry,Playable only when a die roll matches trigger(s): 5. Lasts 1 round(s). Provides 1 defense. Special: Nullify. Affects counters: 1. Guild:Foundry.

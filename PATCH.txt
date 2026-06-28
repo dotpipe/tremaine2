@@ -1,0 +1,1 @@
+Generator untouched. Openings preserved. Added transition helper only.

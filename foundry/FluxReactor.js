@@ -1,0 +1,1 @@
+export class FluxReactor{consume(phi,strength){return phi>=strength*2;}}

@@ -1,0 +1,39 @@
+ROOM SYSTEM REWRITE
+
+Rewrite these files together (not individually):
+
+1. client/core/Input.js
+- emit one-tile movement events
+- expose attempted direction
+
+2. client/game/Game.js
+- central movePlayer(dx,dy)
+- call canEnterTile()
+- if tile==4 -> enterRoom()
+
+3. client/src/world/CampaignMap.js
+- generate rooms with:
+  0 entrance
+  1 exit
+  2 wall
+  3 floor
+  4 border opening
+- save by depth+roomX+roomY
+
+4. client/src/world/GridMap.js
+- load room by coordinates
+
+5. client/src/world/IsoRenderer.js
+- render walls/openings separately
+
+6. client/src/world/RoomManager.js (NEW)
+- getRoom(depth,x,y)
+- createRoom(seed)
+- persist room
+
+Transition:
+stand on 4
+press outward
+=> roomX/Y changes
+=> load/create room
+=> spawn center

@@ -1,0 +1,5 @@
+
+ROOM TRAVEL PATCH
+- edge crossing enabled
+- room coords added
+- pacman style room transitions

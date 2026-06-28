@@ -1,0 +1,79 @@
+export class IsoRenderer {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.tileW = 64;
+    this.tileH = 32;
+    this.tilt = 7 * Math.PI / 180;
+  }
+
+  resize() {
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    const rect = this.canvas.getBoundingClientRect();
+    this.canvas.width = Math.floor(rect.width * dpr);
+    this.canvas.height = Math.floor(rect.height * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  project(gridX, gridY, z = 0) {
+    const x = (gridX - gridY) * (this.tileW / 2);
+    const y = (gridX + gridY) * (this.tileH / 2) * 0.5;
+    const skew = Math.tan(this.tilt) * (gridX + gridY) * 2;
+    return { x, y: y + skew - z };
+  }
+
+  drawTile(ctx, x, y, color, stroke = "#96a5b8") {
+    const w = this.tileW / 2;
+    const h = this.tileH / 2;
+    ctx.beginPath();
+    ctx.moveTo(x, y - h);
+    ctx.lineTo(x + w, y);
+    ctx.lineTo(x, y + h);
+    ctx.lineTo(x - w, y);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  drawGrid(ctx, grid, centerX, centerY, palette) {
+    const rows = grid.length;
+    const cols = grid[0]?.length || 0;
+    const offsetX = centerX;
+    const offsetY = centerY;
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const p = this.project(x, y);
+        const cell = grid[y][x];
+        const color = cell ? palette.wall : palette.floor;
+        this.drawTile(ctx, offsetX + p.x, offsetY + p.y, color, palette.stroke);
+
+        if (cell && Math.random() > 0.97) {
+          ctx.fillStyle = "rgba(255,255,255,0.18)";
+          ctx.fillRect(offsetX + p.x - 3, offsetY + p.y - 2, 6, 6);
+        }
+      }
+    }
+  }
+
+  drawEntity(ctx, gridX, gridY, centerX, centerY, color, label = "") {
+    const p = this.project(gridX, gridY, 0);
+    const x = centerX + p.x;
+    const y = centerY + p.y - 10;
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.arc(x, y, 8, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    if (label) {
+      ctx.font = "bold 11px Arial";
+      ctx.fillStyle = "#102033";
+      ctx.fillText(label, x + 12, y + 4);
+    }
+  }
+}
